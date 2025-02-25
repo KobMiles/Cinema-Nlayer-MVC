@@ -165,15 +165,14 @@ Start the **ASP.NET Core MVC** application:
 dotnet run --project Cinema.WebApp
 ```
 
-Once started, the app will be accessible at:
-- **http://localhost:5145** (For HTTP)
-- **https://localhost:7129** (For HTTPS)
-
 Alternatively, if using **Visual Studio**:
 1. Open the **Cinema-NLayer-MVC.sln** solution.
 2. Set **Cinema.WebApp** as the startup project.
 3. Press **F5** to run in debug mode.
 
+Once started, the app will be accessible at:
+- **http://localhost:5145** (For HTTP)
+- **https://localhost:7129** (For HTTPS)
 
 # 🧩 Dependencies
 
