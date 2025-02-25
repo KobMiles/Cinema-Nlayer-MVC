@@ -8,8 +8,7 @@
 - **Backend**: ASP.NET Core 8 (MVC), Entity Framework Core, Identity, AutoMapper, FluentValidation  
 - **Frontend**: Razor Views, Bootstrap
 - **Database**: SQL Server 
-- **Architecture**: N-layer (WebApp, BusinessLogic, DataAccess)  
-- **Other**: Dependency Injection (DI), Repository + Service
+- **Architecture**: N-layer (WebApp, BusinessLogic(BLL), DataAccess(DAL)  
 
 ## 📂 Project Architecture
 
