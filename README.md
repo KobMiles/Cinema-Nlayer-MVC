@@ -5,7 +5,7 @@
 
 ## 📌 Tech Stack
 
-- **Backend**: ASP.NET Core 8 (MVC), Entity Framework Core, AutoMapper, FluentValidation  
+- **Backend**: ASP.NET Core 8 (MVC), Entity Framework Core, Identity, AutoMapper, FluentValidation  
 - **Frontend**: Razor Views, Bootstrap
 - **Database**: SQL Server 
 - **Architecture**: N-layer (WebApp, BusinessLogic, DataAccess)  
