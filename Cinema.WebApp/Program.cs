@@ -1,6 +1,13 @@
+using Cinema.DAL;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+                       ?? throw new ArgumentNullException(nameof(builder.Configuration), "Connection string 'DefaultConnection' not found.");
+
+builder.Services.AddDbContext(connectionString);
 
 var app = builder.Build();
 
