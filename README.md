@@ -9,7 +9,7 @@
 - **Frontend**: Razor Views, Bootstrap
 - **Database**: SQL Server 
 - **Architecture**: N-layer (WebApp, BusinessLogic, DataAccess)  
-- **Other**: Dependency Injection (DI), Repository + Service Pattern  
+- **Other**: Dependency Injection (DI), Repository + Service
 
 ## 📂 Project Architecture
 
@@ -71,12 +71,8 @@ You can download and install it from the official Microsoft documentation:
 
 ### ✅ Configure the Database Connection String  
 Your project requires a **connection string** to establish a connection with the database. You have two options for storing it:  
-1️⃣ **appsettings.json** (for general use)  
-2️⃣ **UserSecrets** (recommended for security 🔐)  
-
----
-
-### 1️⃣ Using appsettings.json
+<details>
+<summary><strong>1️⃣Using appsettings.json (for general use)  </strong></summary>
 
 1. Open or create your **appsettings.json** file.
 2. Under **ConnectionStrings**, add your connection string. For a local database in Visual Studio, you can use the example below:
@@ -92,12 +88,13 @@ Your project requires a **connection string** to establish a connection with the
 3. Ensure your project is set up to read **DefaultConnection** from this section (for instance, by referencing **Configuration.GetConnectionString("DefaultConnection")** in your code).
 
 4. **Optional**: If you already have your own database, replace the above connection string with your own.
+</details>
 
-### 2️⃣ Using UserSecrets (Recommended for Sensitive Data)
+<details>
+<summary><strong>2️⃣Using UserSecrets (recommended for security 🔐)</strong></summary>
+ To protect connection strings and other credentials, store them in **UserSecrets** instead of appsettings.json. Here’s how:
 
-To protect connection strings and other credentials, store them in **UserSecrets** instead of appsettings.json. Here’s how:
-
-### Option A: Via Visual Studio GUI
+### Option🅰️: Via Visual Studio GUI
 1. Right-click WebApp project in **Solution Explorer** and select **Manage User Secrets**.
 2. A **secrets.json** file will open. Add your connection string there:
    
@@ -111,7 +108,7 @@ To protect connection strings and other credentials, store them in **UserSecrets
 
 3. This file is kept out of source control automatically.
 
-### Option B: Via .NET CLI
+### Option🅱️: Via .NET CLI
 1. Open a terminal in your project folder.
 2. Initialize user secrets (if not done already):
    
@@ -126,8 +123,7 @@ To protect connection strings and other credentials, store them in **UserSecrets
    ```
 
 4. The **secrets.json** file is updated accordingly (but not committed to source control).
-
----
+</details>
 
 ### ⚡ Important: Automatic Local Database Creation  
 The provided connection strings are designed to **automatically create a local database** using **SQL Server LocalDB**. To use this feature, ensure that **LocalDB** is installed on your system. You can download and install it from the official Microsoft documentation:  
@@ -171,7 +167,7 @@ dotnet run --project Cinema.WebApp
 ```
 
 Once started, the app will be accessible at:
-- **http://localhost:5145** (Default ASP.NET Core URL)
+- **http://localhost:5145** (For HTTP)
 - **https://localhost:7129** (For HTTPS)
 
 Alternatively, if using **Visual Studio**:
