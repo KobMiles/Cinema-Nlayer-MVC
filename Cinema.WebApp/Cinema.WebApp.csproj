@@ -4,10 +4,12 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>5ce1ae30-3d2e-4641-9295-4004508ef66a</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Cinema.BLL\Cinema.BLL.csproj" />
+    <ProjectReference Include="..\Cinema.DAL\Cinema.DAL.csproj" />
   </ItemGroup>
 
 </Project>
