@@ -16,8 +16,8 @@
 The project follows an **N-layer architecture** to ensure separation of concerns and maintainability.
 
 ```plaintext
-📂 **Cinema-NLayer-MVC**  
- ├── 📂 **Cinema.WebApp**            # Presentation Layer (MVC, UI)
+📂 Cinema-NLayer-MVC  
+ ├── 📂 Cinema.WebApp                # Presentation Layer (MVC, UI)
  │   ├── wwwroot                     # Static files (CSS, JS, images)
  │   ├── Controllers                 # MVC controllers handling requests
  │   ├── ViewModels                  # View-specific data models
@@ -25,7 +25,7 @@ The project follows an **N-layer architecture** to ensure separation of concerns
  │   ├── appsettings.json            # Configuration file
  │   └── Program.cs                  # Application entry point
  │
- ├── 📂 **Cinema.BLL**               # Business Logic Layer
+ ├── 📂 Cinema.BLL                   # Business Logic Layer
  │   ├── Helpers                     # Utility classes and helper methods
  │   │ └── ApplicationProfile.cs     # Mapping or custom application logic
  │   ├── Services                    # Core business services
@@ -34,7 +34,7 @@ The project follows an **N-layer architecture** to ensure separation of concerns
  │   ├── ServiceExtensions.cs        # Extension methods for business logic services
  │   └── DTOs                        # Data Transfer Objects
  │
- └── 📂 **Cinema.DAL**               # Data Access Layer
+ └── 📂 Cinema.DAL                   # Data Access Layer
      ├── Dependencies                # Additional dependencies or third-party integrations
      ├── Analyzers                   # Code analyzers and diagnostics
      ├── Repositories                # Repository pattern implementations
@@ -56,7 +56,7 @@ The project follows an **N-layer architecture** to ensure separation of concerns
 ## 1️⃣ Clone the repository
 Clone the project to your local machine using Git:
 ```bash
-git clone https://github.com/your-username/Cinema-NLayer-MVC.git
+git clone https://github.com/KobMiles/Cinema-Nlayer-MVC.git
 cd Cinema-NLayer-MVC
 ```
 
