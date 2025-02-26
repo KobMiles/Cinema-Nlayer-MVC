@@ -2,10 +2,10 @@
 
 namespace Cinema.DAL.Data;
 
-internal class CinemaDbContext : DbContext
+public class CinemaDbContext : DbContext
 {
     public CinemaDbContext(DbContextOptions<CinemaDbContext> options)
-        : base(options)
+        : base(options ?? throw new ArgumentNullException(nameof(options)))
     {
     }
 
