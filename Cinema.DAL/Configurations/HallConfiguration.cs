@@ -1,9 +1,10 @@
 ﻿using Cinema.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Cinema.DAL.Configurations;
 
-public class HallConfiguration
+public class HallConfiguration : IEntityTypeConfiguration<Hall>
 {
     public void Configure(EntityTypeBuilder<Hall> builder)
     {
