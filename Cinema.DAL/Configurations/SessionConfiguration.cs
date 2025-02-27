@@ -29,7 +29,8 @@ public class SessionConfiguration : IEntityTypeConfiguration<Session>
         builder
             .HasOne(s => s.Movie)
             .WithMany(m => m.Sessions)
-            .HasForeignKey(s => s.MovieId);
+            .HasForeignKey(s => s.MovieId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder
             .HasOne(s => s.Hall)
