@@ -11,5 +11,7 @@ public class Movie : IEntity
     public DateTime? ReleaseDate { get; set; }
     public string PosterUrl { get; set; } = null!;
     public string TrailerUrl { get; set; } = null!;
-    public ICollection<Genre> Genres { get; set; } = new List<Genre>();
+
+    public ICollection<Genre> Genres { get; set; } = [];
+    public ICollection<Session> Sessions { get; set; } = [];
 }
