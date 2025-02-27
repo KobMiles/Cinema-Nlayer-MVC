@@ -1,8 +1,9 @@
 ﻿using Cinema.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Cinema.DAL.Configurations;
-public class SessionConfiguration
+public class SessionConfiguration : IEntityTypeConfiguration<Session>
 {
     public void Configure(EntityTypeBuilder<Session> builder)
     {
