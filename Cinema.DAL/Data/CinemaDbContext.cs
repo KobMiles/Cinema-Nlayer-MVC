@@ -1,9 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Cinema.DAL.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cinema.DAL.Data;
 
-internal class CinemaDbContext : DbContext
+public class CinemaDbContext : IdentityDbContext
 {
+    public DbSet<Movie> Movies { get; set; }
+    public DbSet<Genre> Genres { get; set; }
+
     public CinemaDbContext(DbContextOptions<CinemaDbContext> options)
         : base(options)
     {
@@ -11,5 +16,6 @@ internal class CinemaDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
     }
 }
