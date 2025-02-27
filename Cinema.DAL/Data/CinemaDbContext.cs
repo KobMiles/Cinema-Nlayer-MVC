@@ -1,4 +1,5 @@
-﻿using Cinema.DAL.Entities;
+﻿using Cinema.DAL.Configurations;
+using Cinema.DAL.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,11 @@ public class CinemaDbContext : IdentityDbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-
+        base.OnModelCreating(modelBuilder);
+        
+        modelBuilder.ApplyConfiguration(new MovieConfiguration());
+        modelBuilder.ApplyConfiguration(new GenreConfiguration());
+        modelBuilder.ApplyConfiguration(new HallConfiguration());
+        modelBuilder.ApplyConfiguration(new SessionConfiguration());
     }
 }
