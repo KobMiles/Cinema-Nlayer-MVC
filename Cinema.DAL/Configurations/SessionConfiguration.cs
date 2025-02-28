@@ -30,7 +30,7 @@ public class SessionConfiguration : IEntityTypeConfiguration<Session>
             .HasOne(s => s.Movie)
             .WithMany(m => m.Sessions)
             .HasForeignKey(s => s.MovieId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
 
         builder
             .HasOne(s => s.Hall)
