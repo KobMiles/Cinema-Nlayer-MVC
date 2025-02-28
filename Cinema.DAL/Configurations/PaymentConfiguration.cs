@@ -13,16 +13,22 @@ public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
 
         builder
             .Property(p => p.Amount)
+            .HasPrecision(18, 2)
             .IsRequired();
 
         builder
-            .Property(p => p.Date)
+            .Property(p => p.PaymentDate)
             .HasDefaultValueSql("GETDATE()")
             .IsRequired();
 
         builder
             .Property(p => p.PaymentMethod)
-            .HasMaxLength(60)
+            .HasConversion<string>()
+            .IsRequired();
+
+        builder
+            .Property(p => p.PaymentStatus)
+            .HasConversion<string>()
             .IsRequired();
     }
 }
