@@ -24,6 +24,7 @@ public class SessionConfiguration : IEntityTypeConfiguration<Session>
 
         builder
             .Property(s => s.TicketPrice)
+            .HasPrecision(18, 2)
             .IsRequired();
 
         builder
