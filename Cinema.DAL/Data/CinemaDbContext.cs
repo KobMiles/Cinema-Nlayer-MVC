@@ -17,7 +17,7 @@ public class CinemaDbContext : IdentityDbContext<User, Role, string>
     public DbSet<Payment> Payments { get; set; }
 
     public CinemaDbContext(DbContextOptions<CinemaDbContext> options)
-        : base(options)
+        : base(options ?? throw new ArgumentNullException(nameof(options)))
     {
     }
 
