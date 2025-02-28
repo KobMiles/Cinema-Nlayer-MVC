@@ -6,6 +6,8 @@ public class Ticket : IEntity
 {
     public int Id { get; set; }
 
+    public string TicketNumber { get; set; } = null!;
+
     public int SessionId { get; set; }
     public Session Session { get; set; } = null!;
 
