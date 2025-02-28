@@ -153,8 +153,8 @@ dotnet ef database update
 
 If migrations are missing, create one:
 ```bash
-dotnet ef migrations add InitialCreate
-dotnet ef database update
+dotnet ef migrations add InitialCreate --project Cinema.DAL --startup-project Cinema.WebApp
+dotnet ef database update --project Cinema.DAL --startup-project Cinema.WebApp
 ```
 
 

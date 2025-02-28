@@ -1,13 +1,16 @@
 using Cinema.DAL;
+using Cinema.WebApp.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
-                       ?? throw new ArgumentNullException(nameof(builder.Configuration), "Connection string 'DefaultConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+                       ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found in configuration.");
 
 builder.Services.AddDbContext(connectionString);
+
+builder.Services.AddCustomIdentityServices(builder.Configuration);
 
 var app = builder.Build();
 
