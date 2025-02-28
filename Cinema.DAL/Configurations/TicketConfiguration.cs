@@ -12,10 +12,14 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
             .HasKey(t => t.Id);
 
         builder
+            .HasIndex(t => t.TicketNumber)
+            .IsUnique();
+
+        builder
             .HasOne(t => t.Session)
             .WithMany(s => s.Tickets)
             .HasForeignKey(t => t.SessionId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
 
         builder
             .HasOne(t => t.Payment)
@@ -31,6 +35,6 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
             .HasOne(t => t.User)
             .WithMany(u => u.Tickets)
             .HasForeignKey(t => t.UserId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
