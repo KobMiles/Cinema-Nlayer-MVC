@@ -12,6 +12,8 @@ builder.Services.AddDbContext(connectionString);
 
 builder.Services.AddCustomIdentityServices(builder.Configuration);
 
+builder.Services.AddUnitOfWork();
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
