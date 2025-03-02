@@ -1,6 +1,8 @@
-﻿namespace Cinema.DAL.Entities;
+﻿using Cinema.DAL.Interfaces;
 
-public class Hall
+namespace Cinema.DAL.Entities;
+
+public class Hall : IEntity
 {
     public int Id { get; set; }
 

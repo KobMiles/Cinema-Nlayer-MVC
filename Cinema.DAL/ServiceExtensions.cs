@@ -1,4 +1,6 @@
 ﻿using Cinema.DAL.Data;
+using Cinema.DAL.Interfaces.Repositories;
+using Cinema.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,5 +12,10 @@ public static class ServiceExtensions
     {
         services.AddDbContext<CinemaDbContext>(x =>
             x.UseSqlServer(connectionString));
+    }
+
+    public static void AddUnitOfWork(this IServiceCollection services)
+    {
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 }
