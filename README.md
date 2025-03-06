@@ -148,7 +148,7 @@ By configuring your connection string correctly, you ensure seamless integration
 
 Run the following command to apply migrations and create the database schema:
 ```bash
-dotnet ef database update
+dotnet ef database update --project Cinema.DAL --startup-project Cinema.WebApp
 ```
 
 If migrations are missing, create one:

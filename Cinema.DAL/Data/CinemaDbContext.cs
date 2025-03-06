@@ -6,7 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Cinema.DAL.Data;
 
-public class CinemaDbContext : IdentityDbContext<User, Role, string>
+public class CinemaDbContext(DbContextOptions<CinemaDbContext> options)
+    : IdentityDbContext<User, Role, string>(options)
+
 {
     public DbSet<Movie> Movies { get; set; }
     public DbSet<Genre> Genres { get; set; }
@@ -15,11 +17,6 @@ public class CinemaDbContext : IdentityDbContext<User, Role, string>
     public DbSet<Seat> Seats { get; set; }
     public DbSet<Ticket> Tickets { get; set; }
     public DbSet<Payment> Payments { get; set; }
-
-    public CinemaDbContext(DbContextOptions<CinemaDbContext> options)
-        : base(options ?? throw new ArgumentNullException(nameof(options)))
-    {
-    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

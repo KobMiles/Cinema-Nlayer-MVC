@@ -3,9 +3,9 @@ using Cinema.DAL.Entities;
 using Cinema.DAL.Interfaces.Repositories;
 
 namespace Cinema.DAL.Repositories;
-public class UnitOfWork : IUnitOfWork
+
+public class UnitOfWork(CinemaDbContext context) : IUnitOfWork
 {
-    private readonly CinemaDbContext _context;
 
     private IRepository<Movie>? _movies;
     private IRepository<Genre>? _genres;
@@ -15,58 +15,33 @@ public class UnitOfWork : IUnitOfWork
     private IRepository<Ticket>? _tickets;
     private IRepository<Payment>? _payments;
 
-    public UnitOfWork(CinemaDbContext context)
-    {
-        _context = context ?? throw new ArgumentNullException(nameof(context));
-    }
-
     public IRepository<Movie> Movies
-        => _movies ??= new Repository<Movie>(_context);
+        => _movies ??= new Repository<Movie>(context);
 
     public IRepository<Genre> Genres
-        => _genres ??= new Repository<Genre>(_context);
+        => _genres ??= new Repository<Genre>(context);
 
     public IRepository<Hall> Halls
-        => _halls ??= new Repository<Hall>(_context);
+        => _halls ??= new Repository<Hall>(context);
 
     public IRepository<Session> Sessions
-        => _sessions ??= new Repository<Session>(_context);
+        => _sessions ??= new Repository<Session>(context);
 
     public IRepository<Seat> Seats
-        => _seats ??= new Repository<Seat>(_context);
+        => _seats ??= new Repository<Seat>(context);
 
     public IRepository<Ticket> Tickets
-        => _tickets ??= new Repository<Ticket>(_context);
+        => _tickets ??= new Repository<Ticket>(context);
 
     public IRepository<Payment> Payments
-        => _payments ??= new Repository<Payment>(_context);
+        => _payments ??= new Repository<Payment>(context);
 
-    public int Save()
-    {
-        return _context.SaveChanges();
-    }
-
-    public async Task<int> SaveAsync()
-    {
-        return await _context.SaveChangesAsync();
-    }
-
-    #region IDisposable
-    private bool _disposed = false;
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (!_disposed && disposing)
-        {
-            _context.Dispose();
-        }
-        _disposed = true;
-    }
+    public int Save() => context.SaveChanges();
+    public async Task<int> SaveAsync() => await context.SaveChangesAsync();
 
     public void Dispose()
     {
-        Dispose(true);
+        context.Dispose();
         GC.SuppressFinalize(this);
     }
-    #endregion
 }

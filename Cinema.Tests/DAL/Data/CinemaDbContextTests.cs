@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace Cinema.Tests.DAL.Data;
+
 public class CinemaDbContextTests
 {
     [Fact]

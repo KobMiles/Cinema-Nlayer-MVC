@@ -1,4 +1,5 @@
 ﻿using Ardalis.Specification;
+using Cinema.DAL.Entities.Enums;
 
 namespace Cinema.DAL.Entities.Specifications.Payments;
 
