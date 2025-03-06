@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Cinema.DAL.Migrations
 {
     /// <inheritdoc />
@@ -133,24 +135,24 @@ namespace Cinema.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GenreMovie",
+                name: "MovieGenre",
                 columns: table => new
                 {
-                    GenresId = table.Column<int>(type: "int", nullable: false),
-                    MoviesId = table.Column<int>(type: "int", nullable: false)
+                    MovieId = table.Column<int>(type: "int", nullable: false),
+                    GenreId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GenreMovie", x => new { x.GenresId, x.MoviesId });
+                    table.PrimaryKey("PK_MovieGenre", x => new { x.MovieId, x.GenreId });
                     table.ForeignKey(
-                        name: "FK_GenreMovie_Genres_GenresId",
-                        column: x => x.GenresId,
+                        name: "FK_MovieGenre_Genres_GenreId",
+                        column: x => x.GenreId,
                         principalTable: "Genres",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_GenreMovie_Movies_MoviesId",
-                        column: x => x.MoviesId,
+                        name: "FK_MovieGenre_Movies_MovieId",
+                        column: x => x.MovieId,
                         principalTable: "Movies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -331,10 +333,138 @@ namespace Cinema.DAL.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Genres",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Action" },
+                    { 2, "Comedy" },
+                    { 3, "Drama" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Halls",
+                column: "Id",
+                values: new object[]
+                {
+                    1,
+                    2
+                });
+
+            migrationBuilder.InsertData(
+                table: "Movies",
+                columns: new[] { "Id", "Description", "Duration", "Name", "PosterUrl", "RatingScore", "ReleaseDate", "TrailerUrl" },
+                values: new object[,]
+                {
+                    { 1, "An adrenaline-filled action movie.", new TimeSpan(0, 2, 0, 0, 0), "Explosive Action", "https://example.com/explosive-action-poster.jpg", 4.5f, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "https://example.com/explosive-action-trailer.mp4" },
+                    { 2, "A comedy that will make you laugh non-stop.", new TimeSpan(0, 1, 30, 0, 0), "Laugh Out Loud", "https://example.com/laugh-out-loud-poster.jpg", 4f, new DateTime(2022, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "https://example.com/laugh-out-loud-trailer.mp4" },
+                    { 3, "A dramatic journey of love and loss.", new TimeSpan(0, 1, 50, 0, 0), "Deep Emotions", "https://example.com/deep-emotions-poster.jpg", 4.2f, new DateTime(2021, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "https://example.com/deep-emotions-trailer.mp4" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "MovieGenre",
+                columns: new[] { "GenreId", "MovieId" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 2, 2 },
+                    { 3, 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Seats",
+                columns: new[] { "Id", "HallId", "SeatNumber", "SeatRow" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, 1 },
+                    { 2, 1, 2, 1 },
+                    { 3, 1, 3, 1 },
+                    { 4, 1, 4, 1 },
+                    { 5, 1, 5, 1 },
+                    { 6, 1, 6, 1 },
+                    { 7, 1, 1, 2 },
+                    { 8, 1, 2, 2 },
+                    { 9, 1, 3, 2 },
+                    { 10, 1, 4, 2 },
+                    { 11, 1, 5, 2 },
+                    { 12, 1, 6, 2 },
+                    { 13, 1, 1, 3 },
+                    { 14, 1, 2, 3 },
+                    { 15, 1, 3, 3 },
+                    { 16, 1, 4, 3 },
+                    { 17, 1, 5, 3 },
+                    { 18, 1, 6, 3 },
+                    { 19, 1, 1, 4 },
+                    { 20, 1, 2, 4 },
+                    { 21, 1, 3, 4 },
+                    { 22, 1, 4, 4 },
+                    { 23, 1, 5, 4 },
+                    { 24, 1, 6, 4 },
+                    { 25, 1, 1, 5 },
+                    { 26, 1, 2, 5 },
+                    { 27, 1, 3, 5 },
+                    { 28, 1, 4, 5 },
+                    { 29, 1, 5, 5 },
+                    { 30, 1, 6, 5 },
+                    { 31, 1, 1, 6 },
+                    { 32, 1, 2, 6 },
+                    { 33, 1, 3, 6 },
+                    { 34, 1, 4, 6 },
+                    { 35, 1, 5, 6 },
+                    { 36, 1, 6, 6 },
+                    { 37, 2, 1, 1 },
+                    { 38, 2, 2, 1 },
+                    { 39, 2, 3, 1 },
+                    { 40, 2, 4, 1 },
+                    { 41, 2, 5, 1 },
+                    { 42, 2, 6, 1 },
+                    { 43, 2, 1, 2 },
+                    { 44, 2, 2, 2 },
+                    { 45, 2, 3, 2 },
+                    { 46, 2, 4, 2 },
+                    { 47, 2, 5, 2 },
+                    { 48, 2, 6, 2 },
+                    { 49, 2, 1, 3 },
+                    { 50, 2, 2, 3 },
+                    { 51, 2, 3, 3 },
+                    { 52, 2, 4, 3 },
+                    { 53, 2, 5, 3 },
+                    { 54, 2, 6, 3 },
+                    { 55, 2, 1, 4 },
+                    { 56, 2, 2, 4 },
+                    { 57, 2, 3, 4 },
+                    { 58, 2, 4, 4 },
+                    { 59, 2, 5, 4 },
+                    { 60, 2, 6, 4 },
+                    { 61, 2, 1, 5 },
+                    { 62, 2, 2, 5 },
+                    { 63, 2, 3, 5 },
+                    { 64, 2, 4, 5 },
+                    { 65, 2, 5, 5 },
+                    { 66, 2, 6, 5 },
+                    { 67, 2, 1, 6 },
+                    { 68, 2, 2, 6 },
+                    { 69, 2, 3, 6 },
+                    { 70, 2, 4, 6 },
+                    { 71, 2, 5, 6 },
+                    { 72, 2, 6, 6 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Sessions",
+                columns: new[] { "Id", "HallId", "MovieId", "StartTime", "TicketPrice" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, new DateTime(2025, 6, 15, 18, 0, 0, 0, DateTimeKind.Unspecified), 12.50m },
+                    { 2, 2, 2, new DateTime(2025, 6, 16, 18, 0, 0, 0, DateTimeKind.Unspecified), 13.50m },
+                    { 3, 1, 3, new DateTime(2025, 6, 17, 18, 0, 0, 0, DateTimeKind.Unspecified), 16.50m }
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_GenreMovie_MoviesId",
-                table: "GenreMovie",
-                column: "MoviesId");
+                name: "IX_MovieGenre_GenreId",
+                table: "MovieGenre",
+                column: "GenreId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",
@@ -422,7 +552,7 @@ namespace Cinema.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "GenreMovie");
+                name: "MovieGenre");
 
             migrationBuilder.DropTable(
                 name: "RoleClaims");

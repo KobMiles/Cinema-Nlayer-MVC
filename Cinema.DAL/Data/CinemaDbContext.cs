@@ -40,5 +40,12 @@ public class CinemaDbContext : IdentityDbContext<User, Role, string>
         modelBuilder.ApplyConfiguration(new UserLoginConfiguration());
         modelBuilder.ApplyConfiguration(new UserTokenConfiguration());
         modelBuilder.ApplyConfiguration(new RoleClaimConfiguration());
+
+        modelBuilder.SeedGenres();
+        modelBuilder.SeedHalls();
+        modelBuilder.SeedSeats();
+        modelBuilder.SeedMovies();
+        modelBuilder.SeedMovieGenres();
+        modelBuilder.SeedSessions();
     }
 }
