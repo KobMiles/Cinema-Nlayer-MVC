@@ -1,19 +1,7 @@
-﻿using Cinema.DAL.Interfaces;
+﻿using Cinema.DAL.Entities.Enums;
+using Cinema.DAL.Interfaces;
 
 namespace Cinema.DAL.Entities;
-
-public enum PaymentMethod
-{
-    Card,
-    Cash
-}
-
-public enum PaymentStatus
-{
-    Pending, 
-    Completed,
-    Cancelled
-}
 
 public class Payment : IEntity
 {
