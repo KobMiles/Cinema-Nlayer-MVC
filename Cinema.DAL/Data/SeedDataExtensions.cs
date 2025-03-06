@@ -32,30 +32,22 @@ public static class ModelBuilderExtensions
         const int totalRows = 6;
         const int seatsPerRow = 6;
 
-        var seats = new List<Seat>();
-        int seatId = 1;
-
-        for (int hallId = 1; hallId <= totalHalls; hallId++)
-        {
-            for (int row = 1; row <= totalRows; row++)
-            {
-                for (int seatNumber = 1; seatNumber <= seatsPerRow; seatNumber++)
-                {
-                    seats.Add(new Seat
+        var seats = Enumerable.Range(1, totalHalls)
+            .SelectMany(hallId => Enumerable.Range(1, totalRows)
+                .SelectMany(row => Enumerable.Range(1, seatsPerRow)
+                    .Select(seatNumber => new Seat
                     {
-                        Id = seatId++,
+                        Id = ((hallId - 1) * totalRows * seatsPerRow) + ((row - 1) * seatsPerRow) + seatNumber,
                         SeatRow = row,
                         SeatNumber = seatNumber,
                         HallId = hallId
-                    });
-                }
-            }
-        }
+                    })))
+            .ToArray();
+
         modelBuilder
             .Entity<Seat>()
-            .HasData(seats.ToArray());
+            .HasData(seats);
     }
-
 
     public static void SeedMovies(this ModelBuilder modelBuilder)
     {
