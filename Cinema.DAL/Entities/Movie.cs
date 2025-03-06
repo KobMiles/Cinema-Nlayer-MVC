@@ -1,6 +1,7 @@
 ﻿using Cinema.DAL.Interfaces;
 
 namespace Cinema.DAL.Entities;
+
 public class Movie : IEntity
 {
     public int Id { get; set; }

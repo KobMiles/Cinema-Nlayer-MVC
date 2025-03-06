@@ -2,21 +2,19 @@
 using Cinema.DAL.Entities;
 using Microsoft.AspNetCore.Identity;
 
-namespace Cinema.WebApp.Extensions
-{
-    public static class IdentityServiceExtensions
-    {
+namespace Cinema.WebApp.Extensions;
 
-        public static IServiceCollection AddCustomIdentityServices(
-            this IServiceCollection services,
-            IConfiguration configuration)
-        {
-            services.AddIdentity<User, Role>(options =>
+public static class IdentityServiceExtensions
+{
+    public static IServiceCollection AddCustomIdentityServices(
+        this IServiceCollection services)
+    {
+        services.AddIdentity<User, Role>(options =>
             {
                 options.Password.RequireDigit = true;
                 options.Password.RequiredLength = 6;
                 options.Password.RequireUppercase = false;
-                options.Password.RequireLowercase = true;
+                options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
 
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
@@ -27,15 +25,13 @@ namespace Cinema.WebApp.Extensions
             .AddEntityFrameworkStores<CinemaDbContext>()
             .AddDefaultTokenProviders();
 
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.LoginPath = "/Account/Login";
-                options.AccessDeniedPath = "/Account/AccessDenied";
-                options.SlidingExpiration = true;
-            });
+        services.ConfigureApplicationCookie(options =>
+        {
+            options.LoginPath = "/Account/Login";
+            options.AccessDeniedPath = "/Account/AccessDenied";
+            options.SlidingExpiration = true;
+        });
 
-            return services;
-        }
+        return services;
     }
-
 }

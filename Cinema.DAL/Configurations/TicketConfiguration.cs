@@ -12,6 +12,11 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
             .HasKey(t => t.Id);
 
         builder
+            .Property(t => t.TicketNumber)
+            .HasMaxLength(150)
+            .IsRequired();
+
+        builder
             .HasIndex(t => t.TicketNumber)
             .IsUnique();
 
@@ -30,6 +35,11 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
             .HasOne(t => t.Seat)
             .WithMany(p => p.Tickets)
             .HasForeignKey(t => t.SeatId);
+
+        builder
+            .Property(t => t.UserId)
+            .HasMaxLength(450)
+            .IsRequired();
 
         builder
             .HasOne(t => t.User)

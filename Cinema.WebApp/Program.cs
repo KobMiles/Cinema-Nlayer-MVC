@@ -10,7 +10,9 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddDbContext(connectionString);
 
-builder.Services.AddCustomIdentityServices(builder.Configuration);
+builder.Services.AddCustomIdentityServices();
+
+builder.Services.AddUnitOfWork();
 
 var app = builder.Build();
 
