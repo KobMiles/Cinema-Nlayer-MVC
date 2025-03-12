@@ -15,5 +15,5 @@ public class Session : IEntity
     public DateTime StartTime { get; set; }
     public decimal TicketPrice { get; set; }
 
-    public ICollection<Ticket> Tickets { get; set; } = [];
+    public ICollection<Ticket> Tickets { get; set; } = new HashSet<Ticket>();
 }

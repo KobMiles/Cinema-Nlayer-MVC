@@ -13,6 +13,6 @@ public class Movie : IEntity
     public string PosterUrl { get; set; } = null!;
     public string TrailerUrl { get; set; } = null!;
 
-    public ICollection<Genre> Genres { get; set; } = [];
-    public ICollection<Session> Sessions { get; set; } = [];
+    public ICollection<Genre> Genres { get; set; } = new HashSet<Genre>();
+    public ICollection<Session> Sessions { get; set; } = new HashSet<Session>();
 }

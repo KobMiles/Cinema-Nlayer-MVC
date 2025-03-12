@@ -11,5 +11,5 @@ public class Seat : IEntity
     public int HallId { get; set; }
     public Hall Hall { get; set; } = null!;
 
-    public ICollection<Ticket> Tickets { get; set; } = [];
+    public ICollection<Ticket> Tickets { get; set; } = new HashSet<Ticket>();
 }

@@ -11,5 +11,5 @@ public class Payment : IEntity
     public PaymentMethod PaymentMethod { get; set; }
     public PaymentStatus PaymentStatus { get; set; }
 
-    public ICollection<Ticket> Tickets { get; set; } = [];
+    public ICollection<Ticket> Tickets { get; set; } = new HashSet<Ticket>();
 }
