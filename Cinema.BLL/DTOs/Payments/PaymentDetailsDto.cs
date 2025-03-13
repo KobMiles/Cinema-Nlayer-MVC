@@ -1,9 +1,9 @@
-﻿using Cinema.DAL.Entities.Enums;
-using Cinema.DAL.Interfaces;
+﻿using Cinema.BLL.DTOs.Tickets;
+using Cinema.DAL.Entities.Enums;
 
-namespace Cinema.DAL.Entities;
+namespace Cinema.BLL.DTOs.Payments;
 
-public class Payment : IEntity
+public class PaymentDetailsDto
 {
     public int Id { get; set; }
     public decimal Amount { get; set; }
@@ -11,5 +11,5 @@ public class Payment : IEntity
     public PaymentMethod PaymentMethod { get; set; }
     public PaymentStatus PaymentStatus { get; set; }
 
-    public ICollection<Ticket> Tickets { get; set; } = new HashSet<Ticket>();
+    public IReadOnlyCollection<TicketDto> Tickets { get; set; } = [];
 }

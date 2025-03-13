@@ -1,8 +1,9 @@
-﻿using Cinema.DAL.Interfaces;
+﻿using Cinema.BLL.DTOs.Genres;
+using Cinema.BLL.DTOs.Sessions;
 
-namespace Cinema.DAL.Entities;
+namespace Cinema.BLL.DTOs.Movies;
 
-public class Movie : IEntity
+public class MovieDetailsDto
 {
     public int Id { get; set; }
     public string Name { get; set; } = null!;
@@ -13,6 +14,6 @@ public class Movie : IEntity
     public string PosterUrl { get; set; } = null!;
     public string TrailerUrl { get; set; } = null!;
 
-    public ICollection<Genre> Genres { get; set; } = new HashSet<Genre>();
-    public ICollection<Session> Sessions { get; set; } = new HashSet<Session>();
+    public IReadOnlyCollection<GenreDto> Genres { get; set; } = [];
+    public IReadOnlyCollection<SessionDto> Sessions { get; set; } = [];
 }
