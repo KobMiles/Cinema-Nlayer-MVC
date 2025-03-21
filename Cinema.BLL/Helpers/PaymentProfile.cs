@@ -11,7 +11,9 @@ public class PaymentProfile : Profile
         CreateMap<Payment, PaymentDto>();
         CreateMap<Payment, PaymentDetailsDto>();
 
-        CreateMap<PaymentCreateDto, Payment>();
+        CreateMap<PaymentCreateDto, Payment>()
+            .ForMember(dest => dest.PaymentDate, opt => opt.Ignore());
+
         CreateMap<PaymentUpdateDto, Payment>();
     }
 }
