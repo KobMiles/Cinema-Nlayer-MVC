@@ -15,7 +15,6 @@ public static class ServiceExtensions
 
         services.AddFluentValidationAutoValidation();
         services.AddFluentValidationClientsideAdapters();
-
         services.AddValidatorsFromAssemblyContaining<UserRegisterDtoValidator>();
 
         services.AddScoped<IMovieService, MovieService>();
