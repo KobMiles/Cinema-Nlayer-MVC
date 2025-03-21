@@ -9,7 +9,9 @@ public class SeatProfile : Profile
     public SeatProfile()
     {
         CreateMap<Seat, SeatDto>();
-
         CreateMap<Seat, SeatDetailsDto>();
+
+        CreateMap<SeatCreateDto, Seat>();
+        CreateMap<SeatUpdateDto, Seat>();
     }
 }
