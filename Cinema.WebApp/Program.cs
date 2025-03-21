@@ -1,3 +1,4 @@
+using Cinema.BLL;
 using Cinema.DAL;
 using Cinema.WebApp.Extensions;
 
@@ -13,6 +14,8 @@ builder.Services.AddDbContext(connectionString);
 builder.Services.AddCustomIdentityServices();
 
 builder.Services.AddUnitOfWork();
+
+builder.Services.AddBusinessLogicServices();
 
 var app = builder.Build();
 
