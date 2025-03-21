@@ -9,7 +9,9 @@ public class GenreProfile : Profile
     public GenreProfile()
     {
         CreateMap<Genre, GenreDto>();
-
         CreateMap<Genre, GenreDetailsDto>();
+
+        CreateMap<GenreCreateDto, Genre>();
+        CreateMap<GenreUpdateDto, Genre>();
     }
 }
