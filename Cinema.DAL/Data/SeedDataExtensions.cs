@@ -13,7 +13,7 @@ public static class ModelBuilderExtensions
             new Genre { Id = 1, Name = "Action" },
             new Genre { Id = 2, Name = "Comedy" },
             new Genre { Id = 3, Name = "Drama" }
-        );
+            );
     }
 
     public static void SeedHalls(this ModelBuilder modelBuilder)

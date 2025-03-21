@@ -1,8 +1,68 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<Cinema.BLL.DTOs.Movies.MovieDto>
+
+@{
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- HERO SECTION -->
+<div class="hero-container">
+    <div class="hero-text-container">
+        <h1 class="display-2 fw-bold text-danger mb-3">Welcome to My Cinema</h1>
+        <h2 class="fs-3 mb-4">Experience the Thrill of Blockbusters</h2>
+        <p class="mb-4">
+            Join us for a captivating journey through the latest Hollywood hits, timeless classics,
+            and immersive surround sound. Enjoy comfortable seating, delicious snacks,
+            and an unforgettable cinematic adventure.
+        </p>
+
+        <div class="row mb-4">
+            <div class="col-sm d-flex flex-column align-items-center">
+                <h5 class="text-danger">4K Laser Projection</h5>
+                <p class="text-muted">
+                    Crystal-clear visuals for every scene.
+                </p>
+            </div>
+            <div class="col-sm d-flex flex-column align-items-center">
+                <h5 class="text-danger">Dolby Atmos</h5>
+                <p class="text-muted">
+                    Feel every whisper and roar in surround sound.
+                </p>
+            </div>
+            <div class="col-sm d-flex flex-column align-items-center">
+                <h5 class="text-danger">VIP Lounges</h5>
+                <p class="text-muted">
+                    Relax and indulge before the show.
+                </p>
+            </div>
+        </div>
+
+        <a href="#" class="btn btn-danger btn-lg">Check Showtimes</a>
+    </div>
+</div>
+
+<!-- MOVIES SECTION -->
+<div class="container my-5">
+    <h2 class="mb-4 text-danger">Now Showing</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-4 g-4">
+        @foreach (var movie in Model)
+        {
+            <div class="col">
+                <div class="card movie-card h-100">
+                    <div class="position-relative">
+                        <img src="@movie.PosterUrl" class="card-img-top" alt="@movie.Name Poster" />
+                        <div class="rating position-absolute top-0 end-0 m-2">
+                            <span class="badge">@movie.RatingScore / 5</span>
+                        </div>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title mb-2">@movie.Name</h5>
+                        <p class="card-text text-muted flex-grow-1">
+                            Release date: @movie.ReleaseDate?.ToShortDateString()
+                        </p>
+                        <a href="#" class="btn btn-danger mt-auto">View Sessions</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
