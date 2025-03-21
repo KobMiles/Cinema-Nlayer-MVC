@@ -1,0 +1,24 @@
+﻿.profile-card {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 12px;
+}
+
+    .profile-card img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+    }
+
+.tickets-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+    .tickets-card .card-header {
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+
+.btn-info, .btn-outline-danger {
+    min-width: 80px;
+}
