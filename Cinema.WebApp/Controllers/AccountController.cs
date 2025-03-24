@@ -1,81 +1,80 @@
 ﻿using Cinema.BLL.DTOs.Users;
 using Cinema.BLL.Interfaces.Services;
+using Cinema.WebApp.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace Cinema.WebApp.Controllers
+namespace Cinema.WebApp.Controllers;
+
+public class AccountController(IAuthService authService, IUserService userService) : Controller
 {
-    public class AccountController(IAuthService authService, IUserService userService) : Controller
+
+    [HttpGet, RedirectAuthenticated]
+    public IActionResult Register() => View();
+
+    [HttpPost]
+    public async Task<IActionResult> Register(UserRegisterDto model)
     {
-        [HttpGet]
-        public IActionResult Register() => View();
-
-        [HttpPost]
-        public async Task<IActionResult> Register(UserRegisterDto model)
-        {
-            var result = await authService.RegisterAsync(model);
-            if (result.Succeeded)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError(string.Empty, error.Description);
-            }
+        if (!ModelState.IsValid)
             return View(model);
+
+        var result = await authService.RegisterAsync(model);
+        if (result.Succeeded)
+        {
+            TempData["Success"] = "Registration successful! You can now log in.";
+            return RedirectToAction(nameof(Login));
         }
 
-        [HttpGet]
-        public IActionResult Login() => View();
+        foreach (var error in result.Errors)
+            ModelState.AddModelError(string.Empty, error.Description);
 
-        [HttpPost]
-        public async Task<IActionResult> Login(UserLoginDto model, string? returnUrl = null)
-        {
-            var result = await authService.LoginAsync(model);
-            if (result.Succeeded)
-            {
-                if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-                {
-                    return Redirect(returnUrl);
-                }
-                return RedirectToAction("Index", "Home");
-            }
+        return View(model);
+    }
 
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+    [HttpGet, RedirectAuthenticated]
+    public IActionResult Login(string? returnUrl = null)
+    {
+        ViewData["ReturnUrl"] = returnUrl;
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Login(UserLoginDto model, string? returnUrl = null)
+    {
+        if (!ModelState.IsValid)
             return View(model);
-        }
 
-        [HttpPost]
-        public async Task<IActionResult> Logout()
+        var (result, redirectUrl) = await authService.LoginAsync(model, returnUrl, Url);
+
+        if (result.Succeeded)
+            return Redirect(redirectUrl);
+
+        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+        return View(model);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Logout()
+    {
+        await authService.LogoutAsync();
+        return RedirectToAction(nameof(Login));
+    }
+
+    [HttpGet]
+    [Authorize]
+    public async Task<IActionResult> Profile()
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        try
         {
-            await authService.LogoutAsync();
-            return RedirectToAction("Login", "Account");
-        }
-
-        [Authorize]
-        [HttpGet]
-        public async Task<IActionResult> Profile()
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (string.IsNullOrEmpty(userId))
-            {
-                return Unauthorized();
-            }
-
-            UserDetailsDto userDetails;
-            try
-            {
-                userDetails = await userService.GetUserDetailsAsync(userId);
-            }
-            catch (KeyNotFoundException)
-            {
-                return NotFound();
-            }
-
+            var userDetails = await userService.GetUserDetailsAsync(userId!);
             return View(userDetails);
+        }
+        catch (KeyNotFoundException)
+        {
+            return NotFound();
         }
     }
 }
