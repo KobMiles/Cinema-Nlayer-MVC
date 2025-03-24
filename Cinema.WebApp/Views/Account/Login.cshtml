@@ -8,7 +8,8 @@
     <div class="col-md-6">
         <h2 class="mb-4">Login</h2>
 
-        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+        @await Html.PartialAsync("Partials/_ValidationSummary")
+        @await Html.PartialAsync("Partials/_SuccessMessage")
 
         <form asp-action="Login" method="post">
             <div class="form-group">
