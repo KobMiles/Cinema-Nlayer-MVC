@@ -11,7 +11,7 @@ public class RedirectAuthenticatedAttribute : ActionFilterAttribute
     public override void OnActionExecuting(ActionExecutingContext context)
     {
         var user = context.HttpContext.User;
-        if (user?.Identity?.IsAuthenticated == true)
+        if (user.Identity?.IsAuthenticated == true)
         {
             context.Result = new RedirectToActionResult(RedirectAction, RedirectController, null);
         }
