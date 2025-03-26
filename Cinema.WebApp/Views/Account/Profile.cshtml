@@ -2,69 +2,69 @@
 
 @{
     ViewData["Title"] = "User Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container my-4">
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="card">
-                <div class="card-body text-center">
-                    <img src="https://via.placeholder.com/150" alt="Profile" class="rounded-circle img-fluid mb-3" />
-                    <h4>@Model.UserName</h4>
-                    <p class="text-muted">@Model.Email</p>
-                    @if (!string.IsNullOrEmpty(Model.PhoneNumber))
-                    {
-                        <p class="text-muted">@Model.PhoneNumber</p>
-                    }
-                    <a href="#" class="btn btn-danger mt-3">Edit Profile</a>
-                    <a href="#" class="btn btn-outline-danger mt-3">Change Password</a>
-                </div>
-            </div>
+<div class="profile-container d-flex justify-content-center align-items-center my-5">
+    <div class="profile-card shadow">
+        <div class="profile-header text-center">
+            <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-avatar" />
+            <h3 class="profile-username">@Model.UserName</h3>
         </div>
 
-        <div class="col-lg-8">
-            <div class="card">
-                <div class="card-header bg-danger text-white">
-                    <h5 class="mb-0">Your Tickets</h5>
-                </div>
-                <div class="card-body">
-                    @if (Model.Tickets.Any())
-                    {
-                        <table class="table table-hover">
-                            <thead>
+        <div class="profile-info">
+            <p><i class="bi bi-envelope-fill"></i> @Model.Email</p>
+            @if (!string.IsNullOrEmpty(Model.PhoneNumber))
+            {
+                <p><i class="bi bi-telephone-fill"></i> @Model.PhoneNumber</p>
+            }
+        </div>
+
+        <div class="profile-actions text-center">
+            <a href="#" class="btn profile-btn">Edit Profile</a>
+            <a href="#" class="btn profile-btn-outline">Change Password</a>
+        </div>
+
+        <div class="profile-tickets mt-4">
+            <h5 class="tickets-title"><i class="bi bi-ticket-perforated-fill"></i> Your Tickets</h5>
+
+            @if (Model.Tickets.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table profile-table table-borderless table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ticket №</th>
+                                <th>Session ID</th>
+                                <th>Seat ID</th>
+                                <th>Payment ID</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var ticket in Model.Tickets)
+                            {
                                 <tr>
-                                    <th>#</th>
-                                    <th>Ticket Number</th>
-                                    <th>Session ID</th>
-                                    <th>Seat ID</th>
-                                    <th>Payment ID</th>
-                                    <th>Action</th>
+                                    <td>@ticket.Id</td>
+                                    <td>@ticket.TicketNumber</td>
+                                    <td>@ticket.SessionId</td>
+                                    <td>@ticket.SeatId</td>
+                                    <td>@ticket.PaymentId</td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm profile-btn-details">Details</a>
+                                        <a href="#" class="btn btn-sm profile-btn-outline">Cancel</a>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var ticket in Model.Tickets)
-                                {
-                                    <tr>
-                                        <td>@ticket.Id</td>
-                                        <td>@ticket.TicketNumber</td>
-                                        <td>@ticket.SessionId</td>
-                                        <td>@ticket.SeatId</td>
-                                        <td>@ticket.PaymentId</td>
-                                        <td>
-                                            <a href="#" class="btn btn-sm btn-info">Details</a>
-                                            <a href="#" class="btn btn-sm btn-outline-danger">Cancel</a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    }
-                    else
-                    {
-                        <p class="text-muted">You have no purchased tickets yet.</p>
-                    }
+                            }
+                        </tbody>
+                    </table>
                 </div>
-            </div>
+            }
+            else
+            {
+                <p class="text-muted text-center">No tickets purchased yet.</p>
+            }
         </div>
     </div>
 </div>
