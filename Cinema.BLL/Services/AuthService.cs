@@ -15,7 +15,17 @@ public class AuthService(
     public async Task<IdentityResult> RegisterAsync(UserRegisterDto registerDto)
     {
         var user = mapper.Map<User>(registerDto);
-        return await userManager.CreateAsync(user, registerDto.Password);
+
+        var result = await userManager.CreateAsync(user, registerDto.Password);
+        if (!result.Succeeded)
+            return result;
+
+        //if (!await userManager.IsInRoleAsync(user, "User"))
+        //{
+        //    await userManager.AddToRoleAsync(user, "User");
+        //}
+
+        return result;
     }
 
     public async Task<IdentitySignInResult> LoginAsync(UserLoginDto loginDto)
