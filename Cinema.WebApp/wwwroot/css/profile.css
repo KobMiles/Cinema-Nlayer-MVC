@@ -1,0 +1,106 @@
+﻿.profile-container {
+    min-height: 85vh;
+}
+
+.profile-card {
+    background: var(--profile-card-bg);
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid var(--profile-card-border);
+    backdrop-filter: blur(15px);
+    max-width: 850px;
+    width: 100%;
+}
+
+.profile-header {
+    margin-bottom: 20px;
+}
+
+.profile-avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 3px solid var(--profile-avatar-border);
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.profile-username {
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.profile-info {
+    text-align: center;
+    color: var(--profile-info-color);
+}
+
+    .profile-info p {
+        margin: 8px 0;
+    }
+
+    .profile-info i {
+        margin-right: 5px;
+        color: var(--color-accent);
+    }
+
+.profile-actions {
+    margin-top: 25px;
+}
+
+.profile-btn {
+    background-color: var(--profile-btn-bg);
+    color: var(--color-text-white);
+    margin-right: 10px;
+    transition: background-color 0.2s;
+}
+
+    .profile-btn:hover {
+        background-color: var(--profile-btn-bg-hover);
+        color: var(--color-text-white);
+    }
+
+.profile-btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--profile-btn-outline-border);
+    color: var(--profile-btn-outline-border);
+    transition: all 0.2s;
+}
+
+    .profile-btn-outline:hover {
+        background-color: var(--profile-btn-bg);
+        color: var(--color-text-white);
+    }
+
+.profile-tickets {
+    margin-top: 35px;
+}
+
+.tickets-title {
+    color: var(--color-accent);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-table {
+    color: var(--profile-info-color);
+}
+
+    .profile-table thead {
+        background-color: var(--profile-table-header-bg);
+    }
+
+    .profile-table tbody tr:hover {
+        background-color: var(--profile-table-row-hover-bg);
+    }
+
+.profile-btn-details {
+    background-color: var(--profile-details-btn-bg);
+    color: var(--color-text-white);
+    transition: background-color 0.2s;
+}
+
+    .profile-btn-details:hover {
+        background-color: var(--profile-details-btn-bg-hover);
+        color: var(--color-text-white);
+    }
