@@ -1,0 +1,74 @@
+﻿.login-wrapper {
+    height: 90vh;
+}
+
+.login-card {
+    background: var(--login-card-bg);
+    border: 1px solid var(--login-card-border);
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.login-header {
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--login-header-color);
+}
+
+.custom-label {
+    color: var(--color-text-muted);
+    margin-bottom: 5px;
+}
+
+.custom-input {
+    background-color: var(--input-bg-color);
+    color: var(--input-text-color);
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+    .custom-input::placeholder {
+        color: var(--color-text-muted);
+        opacity: 0.7;
+    }
+
+    .custom-input:focus {
+        background-color: var(--input-focus-bg-color);
+        color: var(--input-text-color);
+        box-shadow: 0 0 0 3px var(--color-accent-hover);
+        outline: none;
+    }
+
+.custom-check {
+    background-color: transparent;
+    border-color: var(--color-text-muted);
+}
+
+    .custom-check:checked {
+        background-color: var(--color-accent);
+        border-color: var(--color-accent);
+    }
+
+.custom-check-label {
+    color: var(--color-text-muted);
+}
+
+.custom-btn {
+    background-color: var(--color-accent);
+    color: var(--color-text-white);
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 10px;
+    transition: background-color 0.15s ease-in-out;
+}
+
+    .custom-btn:hover {
+        background-color: var(--color-accent-hover);
+    }
