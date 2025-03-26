@@ -1,37 +1,37 @@
 ﻿@model Cinema.BLL.DTOs.Users.UserRegisterDto
-
 @{
     ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <h2 class="mb-4">Register</h2>
+<div class="login-wrapper d-flex justify-content-center align-items-center">
+    <div class="login-card shadow">
+        <h2 class="login-header text-center">Create Your Account</h2>
 
         @await Html.PartialAsync("Partials/_ValidationSummary")
 
         <form asp-action="Register" method="post">
-            <div class="form-group">
-                <label asp-for="Email"></label>
-                <input asp-for="Email" class="form-control" />
+            <div class="mb-3">
+                <label asp-for="Email" class="custom-label"></label>
+                <input asp-for="Email" class="form-control custom-input" placeholder="Enter your email" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Password"></label>
-                <input asp-for="Password" class="form-control" type="password" />
+            <div class="mb-3">
+                <label asp-for="Password" class="custom-label"></label>
+                <input asp-for="Password" class="form-control custom-input" type="password" placeholder="Enter your password" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ConfirmPassword"></label>
-                <input asp-for="ConfirmPassword" class="form-control" type="password" />
+            <div class="mb-3">
+                <label asp-for="ConfirmPassword" class="custom-label">Confirm Password</label>
+                <input asp-for="ConfirmPassword" class="form-control custom-input" type="password" placeholder="Confirm your password" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="PhoneNumber"></label>
-                <input asp-for="PhoneNumber" class="form-control" />
+            <div class="mb-4">
+                <label asp-for="PhoneNumber" class="custom-label">Phone Number</label>
+                <input asp-for="PhoneNumber" class="form-control custom-input" placeholder="Enter your phone number" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-danger">Register</button>
+            <button type="submit" class="btn custom-btn w-100">Register</button>
         </form>
     </div>
 </div>
