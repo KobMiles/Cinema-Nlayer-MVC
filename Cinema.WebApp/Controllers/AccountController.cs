@@ -43,12 +43,23 @@ public class AccountController(IAuthService authService, IUserService userServic
     public async Task<IActionResult> Login(UserLoginDto model, string? returnUrl = null)
     {
         if (!ModelState.IsValid)
+        {
             return View(model);
+        }
 
-        var (result, redirectUrl) = await authService.LoginAsync(model, returnUrl, Url);
+        var result = await authService.LoginAsync(model);
 
         if (result.Succeeded)
-            return Redirect(redirectUrl);
+        {
+            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
 
         ModelState.AddModelError(string.Empty, "Invalid login attempt.");
         return View(model);
