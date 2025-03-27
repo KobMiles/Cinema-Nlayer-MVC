@@ -13,18 +13,6 @@
     --input-focus-bg-color: rgba(255,255,255,0.25);
     --input-text-color: var(--color-text-muted);
     --login-header-color: var(--color-accent);
-
-    --profile-card-bg: rgba(255,255,255,0.06);
-    --profile-card-border: rgba(255,255,255,0.12);
-    --profile-avatar-border: var(--color-accent);
-    --profile-info-color: var(--color-text-muted);
-    --profile-btn-bg: var(--color-accent);
-    --profile-btn-bg-hover: var(--color-accent-hover);
-    --profile-btn-outline-border: var(--color-accent);
-    --profile-table-header-bg: rgba(255,255,255,0.1);
-    --profile-table-row-hover-bg: rgba(255,255,255,0.07);
-    --profile-details-btn-bg: #17a2b8;
-    --profile-details-btn-bg-hover: #138496;
 }
 
 body {
