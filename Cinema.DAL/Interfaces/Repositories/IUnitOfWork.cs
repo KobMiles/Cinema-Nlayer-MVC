@@ -11,7 +11,7 @@ public interface IUnitOfWork : IDisposable
     IRepository<Seat> Seats { get; }
     IRepository<Ticket> Tickets { get; }
     IRepository<Payment> Payments { get; }
-    IRepository<User> Users { get; }
+    IUserRepository Users { get; }
 
     int Save();
     Task<int> SaveAsync();
