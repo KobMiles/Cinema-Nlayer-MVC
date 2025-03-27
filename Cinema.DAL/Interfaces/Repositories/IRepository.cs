@@ -2,8 +2,9 @@
 
 namespace Cinema.DAL.Interfaces.Repositories;
 
-public interface IRepository<TEntity> : IRepositoryBase<TEntity>, IReadRepository<TEntity>
-    where TEntity : class
+public interface IRepository<TEntity>
+    : IRepositoryBase<TEntity>, IReadRepository<TEntity>
+    where TEntity : class, IEntity
 {
 
 }
