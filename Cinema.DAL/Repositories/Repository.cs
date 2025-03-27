@@ -7,7 +7,7 @@ namespace Cinema.DAL.Repositories;
 
 public class Repository<TEntity>(DbContext context)
     : RepositoryBase<TEntity>(context), IRepository<TEntity>
-    where TEntity : class
+    where TEntity : class, IEntity
 {
 
 }
