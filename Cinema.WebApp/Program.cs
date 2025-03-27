@@ -1,3 +1,4 @@
+using Cinema.BLL;
 using Cinema.DAL;
 using Cinema.WebApp.Extensions;
 
@@ -14,6 +15,8 @@ builder.Services.AddCustomIdentityServices();
 
 builder.Services.AddUnitOfWork();
 
+builder.Services.AddBusinessLogicServices();
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -27,6 +30,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

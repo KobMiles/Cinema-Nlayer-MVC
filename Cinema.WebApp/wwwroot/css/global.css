@@ -1,22 +1,28 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+:root {
+    --color-background: #2c2c2c;
+    --color-gradient-start: #2c2c2c;
+    --color-gradient-end: #111111;
+    --color-text-white: #ffffff;
+    --color-text-light: #f1f1f1;
+    --color-text-muted: #cccccc;
+    --color-accent: #dc3545;
+    --color-accent-hover: #b02a3a;
+    --login-card-bg: rgba(255,255,255,0.05);
+    --login-card-border: rgba(255,255,255,0.1);
+    --input-bg-color: rgba(255,255,255,0.15);
+    --input-focus-bg-color: rgba(255,255,255,0.25);
+    --input-text-color: var(--color-text-muted);
+    --login-header-color: var(--color-accent);
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: var(--color-background);
+    color: var(--color-text-white);
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, .text-danger {
+    color: var(--color-accent) !important;
 }

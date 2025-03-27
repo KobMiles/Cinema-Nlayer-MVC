@@ -1,0 +1,55 @@
+﻿.hero-container {
+    height: 100vh;
+    background: linear-gradient(145deg, var(--color-gradient-start), var(--color-gradient-end));
+    color: var(--color-text-white);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-text-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.hero-container h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-light);
+}
+
+.hero-container p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--color-text-muted);
+}
+
+.movie-card {
+    background-color: var(--color-card-bg);
+    border: none;
+    color: var(--color-text);
+    transition: transform 0.3s;
+}
+
+    .movie-card:hover {
+        transform: scale(1.03);
+    }
+
+    .movie-card .card-title {
+        color: var(--color-text);
+    }
+
+    .movie-card .card-text {
+        color: var(--color-text);
+    }
+
+    .movie-card .rating .badge {
+        background-color: var(--color-accent);
+        font-size: 0.85rem;
+    }

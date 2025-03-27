@@ -1,21 +1,16 @@
 using System.Diagnostics;
+using Cinema.BLL.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 using Cinema.WebApp.ViewModels;
 
 namespace Cinema.WebApp.Controllers;
 
-public class HomeController : Controller
+public class HomeController(IMovieService movieService) : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public async Task<IActionResult> IndexAsync()
     {
-        _logger = logger;
-    }
-
-    public IActionResult Index()
-    {
-        return View();
+        var movies = await movieService.GetMoviesWithActiveSessionsAsync();
+        return View(movies);
     }
 
     public IActionResult Privacy()
