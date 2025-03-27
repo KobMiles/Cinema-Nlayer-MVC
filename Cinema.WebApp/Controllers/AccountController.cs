@@ -13,7 +13,7 @@ public class AccountController(IAuthService authService, IUserService userServic
     [HttpGet, RedirectAuthenticated]
     public IActionResult Register() => View();
 
-    [HttpPost]
+    [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Register(UserRegisterDto model)
     {
         if (!ModelState.IsValid)
@@ -39,7 +39,7 @@ public class AccountController(IAuthService authService, IUserService userServic
         return View();
     }
 
-    [HttpPost]
+    [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(UserLoginDto model, string? returnUrl = null)
     {
         if (!ModelState.IsValid)
@@ -65,15 +65,14 @@ public class AccountController(IAuthService authService, IUserService userServic
         return View(model);
     }
 
-    [HttpPost]
+    [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Logout()
     {
         await authService.LogoutAsync();
         return RedirectToAction(nameof(Login));
     }
 
-    [HttpGet]
-    [Authorize]
+    [HttpGet, Authorize]
     public async Task<IActionResult> Profile()
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
