@@ -1,7 +1,9 @@
-﻿using Cinema.DAL.Entities;
+﻿using Ardalis.Specification;
+using Cinema.DAL.Entities;
 
 namespace Cinema.DAL.Interfaces.Repositories;
 
-public interface IUserRepository : IRepository<User>
+public interface IUserRepository
+    : IRepositoryBase<User>, IReadRepository<User>
 {
 }
