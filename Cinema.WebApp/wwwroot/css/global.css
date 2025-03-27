@@ -7,6 +7,12 @@
     --color-text-muted: #cccccc;
     --color-accent: #dc3545;
     --color-accent-hover: #b02a3a;
+    --login-card-bg: rgba(255,255,255,0.05);
+    --login-card-border: rgba(255,255,255,0.1);
+    --input-bg-color: rgba(255,255,255,0.15);
+    --input-focus-bg-color: rgba(255,255,255,0.25);
+    --input-text-color: var(--color-text-muted);
+    --login-header-color: var(--color-accent);
 }
 
 body {

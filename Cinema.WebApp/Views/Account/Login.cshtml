@@ -1,0 +1,36 @@
+﻿@model Cinema.BLL.DTOs.Users.UserLoginDto
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="login-wrapper d-flex justify-content-center align-items-center">
+    <div class="login-card shadow">
+        <h2 class="login-header text-center">Login to Your Account</h2>
+
+        @await Html.PartialAsync("Partials/_ValidationSummary")
+        @await Html.PartialAsync("Partials/_SuccessMessage")
+
+        <form asp-action="Login" method="post">
+            <div class="mb-3">
+                <label asp-for="Email" class="custom-label"></label>
+                <input asp-for="Email" class="form-control custom-input" placeholder="Enter your email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="custom-label"></label>
+                <input asp-for="Password" class="form-control custom-input" type="password" placeholder="Enter your password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-check mb-4">
+                <input asp-for="RememberMe" class="form-check-input custom-check" />
+                <label asp-for="RememberMe" class="form-check-label custom-check-label">Remember Me</label>
+            </div>
+            <button type="submit" class="btn custom-btn w-100">Login</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

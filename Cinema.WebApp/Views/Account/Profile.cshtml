@@ -1,0 +1,60 @@
+﻿@model Cinema.BLL.DTOs.Users.UserDetailsDto
+
+@{
+    ViewData["Title"] = "User Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="profile-wrapper">
+    <div class="profile-card">
+        <div class="profile-header text-center">
+            <h4 class="user-email mt-3">@Model.Email</h4>
+            <div class="profile-contact">
+                @if (!string.IsNullOrEmpty(Model.PhoneNumber))
+                {
+                    <p class="phone-number"><i class="bi bi-telephone-fill"></i> @Model.PhoneNumber</p>
+                }
+                else
+                {
+                    <p class="phone-number text-muted">No phone number provided.</p>
+                }
+            </div>
+            <a href="#" class="btn edit-profile-btn mt-3">
+                <i class="bi bi-pencil-fill"></i> Edit Profile
+            </a>
+        </div>
+        <div class="profile-tickets">
+            <h5 class="tickets-title">🎫 Your Tickets</h5>
+            @if (Model.Tickets.Any())
+            {
+                <div class="accordion" id="ticketsAccordion">
+                    @foreach (var ticket in Model.Tickets)
+                    {
+                        <div class="accordion-item ticket-item">
+                            <h2 class="accordion-header" id="heading-@ticket.Id">
+                                <button class="accordion-button collapsed ticket-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@ticket.Id">
+                                    Ticket № @ticket.TicketNumber
+                                </button>
+                            </h2>
+                            <div id="collapse-@ticket.Id" class="accordion-collapse collapse" data-bs-parent="#ticketsAccordion">
+                                <div class="accordion-body ticket-body">
+                                    <p><strong>Session ID:</strong> @ticket.SessionId</p>
+                                    <p><strong>Seat ID:</strong> @ticket.SeatId</p>
+                                    <p><strong>Payment ID:</strong> @ticket.PaymentId</p>
+                                    <div class="ticket-actions">
+                                        <a href="#" class="btn details-btn">Details</a>
+                                        <a href="#" class="btn cancel-btn">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <p class="text-muted">You have no tickets yet.</p>
+            }
+        </div>
+    </div>
+</div>

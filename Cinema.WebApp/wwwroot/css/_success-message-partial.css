@@ -1,0 +1,22 @@
+﻿.custom-success-alert {
+    background: var(--login-card-bg);
+    border: 1px solid var(--login-card-border);
+    border-left: 5px solid #28a745;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    font-size: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+    .custom-success-alert svg {
+        fill: #28a745;
+        margin-right: 0.75rem;
+    }
+
+    .custom-success-alert span {
+        flex: 1;
+    }

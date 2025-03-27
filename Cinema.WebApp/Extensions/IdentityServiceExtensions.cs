@@ -30,8 +30,15 @@ public static class IdentityServiceExtensions
             options.LoginPath = "/Account/Login";
             options.AccessDeniedPath = "/Account/AccessDenied";
             options.SlidingExpiration = true;
-        });
 
+            options.ReturnUrlParameter = "returnUrl";
+            options.Events.OnRedirectToLogin = context =>
+            {
+                context.Response.Redirect($"/Account/Login?returnUrl={Uri.EscapeDataString(context.Request.Path + context.Request.QueryString)}");
+                return Task.CompletedTask;
+            };
+        });
+        
         return services;
     }
 }

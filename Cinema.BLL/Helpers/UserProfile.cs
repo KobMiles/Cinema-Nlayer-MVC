@@ -9,7 +9,12 @@ public class UserProfile : Profile
     public UserProfile()
     {
         CreateMap<User, UserDto>();
+        CreateMap<User, UserDetailsDto>()
+            .ForMember(dest => dest.Tickets, 
+                opt => opt.MapFrom(src => src.Tickets));
 
-        CreateMap<User, UserDetailsDto>();
+        CreateMap<UserRegisterDto, User>()
+            .ForMember(dest => dest.UserName, 
+                opt => opt.MapFrom(src => src.Email));
     }
 }

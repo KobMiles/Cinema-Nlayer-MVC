@@ -14,6 +14,7 @@ public class UnitOfWork(CinemaDbContext context) : IUnitOfWork
     private IRepository<Seat>? _seats;
     private IRepository<Ticket>? _tickets;
     private IRepository<Payment>? _payments;
+    private IUserRepository? _users;
 
     public IRepository<Movie> Movies
         => _movies ??= new Repository<Movie>(context);
@@ -35,6 +36,8 @@ public class UnitOfWork(CinemaDbContext context) : IUnitOfWork
 
     public IRepository<Payment> Payments
         => _payments ??= new Repository<Payment>(context);
+    public IUserRepository Users
+        => _users ??= new UserRepository(context);
 
     public int Save() => context.SaveChanges();
     public async Task<int> SaveAsync() => await context.SaveChangesAsync();
