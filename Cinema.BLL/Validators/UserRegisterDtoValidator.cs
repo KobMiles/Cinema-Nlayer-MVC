@@ -19,6 +19,8 @@ public class UserRegisterDtoValidator : AbstractValidator<UserRegisterDto>
             .Equal(x => x.Password).WithMessage("Passwords do not match.");
 
         RuleFor(x => x.PhoneNumber)
-            .NotEmpty().WithMessage("Phone number is required.");
+            .NotEmpty().WithMessage("Phone number is required.")
+            .Matches(@"^(?:\+\d{1,3}[- ]?)?\d{9,10}$")
+            .WithMessage("Invalid phone number format.");
     }
 }
