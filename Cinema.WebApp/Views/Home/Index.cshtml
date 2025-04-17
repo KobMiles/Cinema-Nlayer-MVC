@@ -46,23 +46,25 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-4 g-4">
         @foreach (var movie in Model)
         {
-            <div class="col">
-                <div class="card movie-card h-100">
-                    <div class="position-relative">
-                        <img src="@movie.PosterUrl" class="card-img-top" alt="@movie.Name Poster" />
-                        <div class="rating position-absolute top-0 end-0 m-2">
-                            <span class="badge">@movie.RatingScore / 5</span>
-                        </div>
-                    </div>
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title mb-2">@movie.Name</h5>
-                        <p class="card-text text-muted flex-grow-1">
-                            Release date: @movie.ReleaseDate?.ToShortDateString()
-                        </p>
-                        <a href="#" class="btn btn-danger mt-auto">View Sessions</a>
-                    </div>
-                </div>
-            </div>
+	        <div class="col">
+		        <a asp-controller="Movie" asp-action="Index" asp-route-id="@movie.Id" class="text-decoration-none">
+			        <div class="card movie-card h-100">
+				        <div class="position-relative">
+					        <img src="@movie.PosterUrl" class="card-img-top" alt="@movie.Name Poster"/>
+					        <div class="rating position-absolute top-0 end-0 m-2">
+						        <span class="badge">@movie.RatingScore / 5</span>
+					        </div>
+				        </div>
+				        <div class="card-body d-flex flex-column">
+					        <h5 class="card-title mb-2 text-white">@movie.Name</h5>
+					        <p class="card-text text-muted flex-grow-1">
+						        Release date: @movie.ReleaseDate?.ToShortDateString()
+					        </p>
+					        <a href="#" class="btn btn-danger mt-auto">View Sessions</a>
+				        </div>
+			        </div>
+				</a>
+	        </div>
         }
     </div>
 </div>
