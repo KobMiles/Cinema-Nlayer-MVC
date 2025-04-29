@@ -15,4 +15,15 @@ public class MovieService(IUnitOfWork unitOfWork, IMapper mapper) : IMovieServic
 
         return mapper.Map<IEnumerable<MovieDto>>(movies);
     }
+
+    public async Task<MovieDetailsDto?> GetMovieDetailsAsync(int id)
+    {
+        var spec = new MovieByIdWithGenresAndSessionsSpec(id);
+        var movie = await unitOfWork.Movies.FirstOrDefaultAsync(spec);
+
+        if (movie == null)
+            return null;
+
+        return mapper.Map<MovieDetailsDto>(movie);
+    }
 }

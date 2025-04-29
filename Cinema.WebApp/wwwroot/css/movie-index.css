@@ -1,0 +1,144 @@
+﻿.movie-details-page {
+    color: var(--color-text-light);
+}
+
+.hero-banner {
+    background: linear-gradient(135deg, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
+    padding: 4rem 2rem;
+    border-radius: 0.75rem;
+    position: relative;
+    overflow: hidden;
+}
+
+    .hero-banner .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .hero-banner .hero-subtitle {
+        color: var(--color-text-muted);
+    }
+
+.btn-hero-action {
+    background-color: var(--color-accent);
+    border: none;
+    transition: background-color 0.3s;
+}
+
+    .btn-hero-action:hover {
+        background-color: var(--color-accent-hover);
+    }
+
+.poster-wrapper .movie-poster {
+    max-height: 600px;
+    object-fit: cover;
+    border: 2px solid var(--color-accent);
+    background-color: transparent;
+}
+
+.details-wrapper h2 {
+    color: var(--color-accent);
+}
+
+.details-wrapper .genre-badge {
+    background-color: var(--color-accent);
+    color: #fff;
+    font-weight: 500;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.25rem;
+}
+
+.trailer-frame {
+    border: 2px solid var(--color-accent);
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.sessions-section h2 {
+    color: var(--color-accent);
+}
+
+.session-card {
+    background-color: var(--color-background);
+    border: none;
+    color: var(--color-text-white);
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 0 1px var(--login-card-border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+    .session-card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 0 2px var(--color-accent), 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .session-card .card-body {
+        color: var(--color-text-white);
+    }
+
+    .session-card .card-title {
+        color: var(--color-accent) !important;
+    }
+
+    .session-card .btn-danger {
+        background-color: var(--color-accent);
+        border: none;
+        transition: background-color 0.3s;
+    }
+
+        .session-card .btn-danger:hover {
+            background-color: var(--color-accent-hover);
+        }
+
+.date-group {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.date-header {
+    color: var(--color-accent);
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-accent);
+}
+
+.session-details {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 0.75rem;
+    border-radius: 6px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.text-accent {
+    color: var(--color-accent);
+}
+
+.bg-accent {
+    background-color: var(--color-accent);
+}
+
+.btn-accent {
+    background-color: var(--color-accent);
+    color: white;
+    transition: all 0.3s;
+}
+
+    .btn-accent:hover {
+        background-color: var(--color-accent-hover);
+        transform: translateY(-2px);
+    }
+
+.no-sessions {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 2rem;
+}
