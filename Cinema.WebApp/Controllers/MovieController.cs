@@ -5,8 +5,7 @@ namespace Cinema.WebApp.Controllers;
 
 public class MovieController(IMovieService movieService) : Controller
 {
-    [HttpGet]
-    public async Task<IActionResult> Index(int id)
+    [HttpGet] public async Task<IActionResult> Details(int id)
     {
         var movieDetails = await movieService.GetMovieDetailsAsync(id);
 
