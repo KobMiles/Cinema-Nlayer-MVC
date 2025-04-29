@@ -121,7 +121,7 @@
                                             </div>
                                             <div class="detail-item">
                                                 <i class="fas fa-stopwatch me-2"></i>
-                                                <span>Ends at @session.StartTime.AddMinutes(Model.Duration.Minutes).ToString("HH:mm")</span>
+                                                <span>Ends at @session.StartTime.AddMinutes(Model.Duration.TotalMinutes).ToString("HH:mm")</span>
                                             </div>
                                         </div>
 
