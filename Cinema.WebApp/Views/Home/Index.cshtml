@@ -47,7 +47,7 @@
         @foreach (var movie in Model)
         {
 	        <div class="col">
-		        <a asp-controller="Movie" asp-action="Index" asp-route-id="@movie.Id" class="text-decoration-none">
+		        <a asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id" class="text-decoration-none">
 			        <div class="card movie-card h-100">
 				        <div class="position-relative">
 					        <img src="@movie.PosterUrl" class="card-img-top" alt="@movie.Name Poster"/>
