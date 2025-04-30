@@ -9,8 +9,6 @@ public class TmDbProfile : Profile
 {
     public TmDbProfile()
     {
-        CreateMap<TmDbGenreDto, TmDbGenreDto>();
-
         CreateMap<TmDbMovieDetailsDto, MovieCreateDto>()
             .ForMember(d => d.Name,
                 o => o.MapFrom(s => s.Title))
