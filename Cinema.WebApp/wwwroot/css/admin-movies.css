@@ -1,0 +1,66 @@
+﻿:root {
+    --bg-gradient: linear-gradient(var(--color-gradient-start), var(--color-gradient-end));
+}
+
+.admin-container {
+    background: var(--bg-gradient);
+    padding: 2rem 0;
+    min-height: 100vh;
+    color: var(--color-text-light);
+}
+
+.admin-form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.admin-card {
+    background-color: var(--login-card-bg);
+    border: 1px solid var(--login-card-border);
+    border-radius: 0.5rem;
+    color: var(--color-text-light);
+}
+
+    .admin-card .card-title {
+        color: var(--color-accent);
+    }
+
+.admin-form-control {
+    background-color: var(--input-bg-color);
+    color: var(--input-text-color);
+    border: 1px solid var(--login-card-border);
+}
+
+    .admin-form-control:focus {
+        background-color: var(--input-focus-bg-color);
+        color: var(--color-text-white);
+        outline: none;
+        box-shadow: none;
+    }
+
+.admin-btn-primary {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-text-white);
+}
+
+    .admin-btn-primary:hover {
+        background-color: var(--color-accent-hover);
+        border-color: var(--color-accent-hover);
+        color: var(--color-text-white);
+    }
+
+.admin-btn-secondary {
+    background: transparent;
+    border: 1px solid var(--color-text-muted);
+    color: var(--color-text-muted);
+}
+
+    .admin-btn-secondary:hover {
+        background-color: var(--login-card-border);
+        color: var(--color-text-white);
+    }
+
+.admin-movie-card {
+    width: 240px;
+}
