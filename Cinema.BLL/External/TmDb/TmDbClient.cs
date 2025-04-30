@@ -54,14 +54,14 @@ public class TmDbClient(
         var urlTrailer = $"movie/{id}/videos?api_key={_options.ApiKey}&language={_options.Language}";
         var response = await http.GetFromJsonAsync<TmDbTrailersResponseDto>(urlTrailer);
 
-        var key = response?.Results
+        var trailerKey = response?.Results
             .FirstOrDefault(v =>
                 v.Site.Equals("YouTube", StringComparison.OrdinalIgnoreCase) &&
                 v.Type.Equals("Trailer", StringComparison.OrdinalIgnoreCase))
             ?.Key;
 
-        return key is null 
+        return trailerKey is null 
             ? string.Empty 
-            : $"{_options.YoutubeBase}{key}";
+            : $"{_options.YoutubeBase}{trailerKey}";
     }
 }
