@@ -6,4 +6,5 @@ public interface IMovieService
 {
     Task<IEnumerable<MovieDto>> GetMoviesWithActiveSessionsAsync();
     Task<MovieDetailsDto?> GetMovieDetailsAsync(int movieId);
+    Task CreateAsync(MovieCreateDto dto);
 }

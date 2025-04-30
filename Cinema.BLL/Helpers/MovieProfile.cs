@@ -11,7 +11,8 @@ public class MovieProfile : Profile
         CreateMap<Movie, MovieDto>();
         CreateMap<Movie, MovieDetailsDto>();
 
-        CreateMap<MovieCreateDto, Movie>();
+        CreateMap<MovieCreateDto, Movie>()
+            .ForMember(m => m.Genres, o => o.Ignore());
         CreateMap<MovieUpdateDto, Movie>();
     }
 }

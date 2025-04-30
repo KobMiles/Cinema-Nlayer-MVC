@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cinema.DAL.Migrations
 {
     [DbContext(typeof(CinemaDbContext))]
-    [Migration("20250305104029_InitialCreate")]
+    [Migration("20250430135003_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -92,8 +92,8 @@ namespace Cinema.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(600)
+                        .HasColumnType("nvarchar(600)");
 
                     b.Property<TimeSpan>("Duration")
                         .HasColumnType("time");
@@ -123,7 +123,7 @@ namespace Cinema.DAL.Migrations
 
                     b.ToTable("Movies", t =>
                         {
-                            t.HasCheckConstraint("CK_Movie_Rating", "RatingScore BETWEEN 0.0 AND 5.0");
+                            t.HasCheckConstraint("CK_Movie_Rating", "RatingScore BETWEEN 0.0 AND 10.0");
                         });
 
                     b.HasData(
@@ -825,10 +825,12 @@ namespace Cinema.DAL.Migrations
 
                     b.Property<string>("TicketNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
+                        .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
