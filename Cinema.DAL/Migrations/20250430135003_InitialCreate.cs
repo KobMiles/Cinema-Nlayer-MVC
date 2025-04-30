@@ -45,7 +45,7 @@ namespace Cinema.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(600)", maxLength: 600, nullable: true),
                     RatingScore = table.Column<float>(type: "real", nullable: false),
                     Duration = table.Column<TimeSpan>(type: "time", nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -55,7 +55,7 @@ namespace Cinema.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Movies", x => x.Id);
-                    table.CheckConstraint("CK_Movie_Rating", "RatingScore BETWEEN 0.0 AND 5.0");
+                    table.CheckConstraint("CK_Movie_Rating", "RatingScore BETWEEN 0.0 AND 10.0");
                 });
 
             migrationBuilder.CreateTable(
@@ -298,11 +298,11 @@ namespace Cinema.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TicketNumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    TicketNumber = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     SessionId = table.Column<int>(type: "int", nullable: false),
                     PaymentId = table.Column<int>(type: "int", nullable: false),
                     SeatId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false)
                 },
                 constraints: table =>
                 {
