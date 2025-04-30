@@ -214,6 +214,20 @@ namespace Cinema.DAL.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("Roles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "8F2D4A1E-3C4B-4B6E-9F8A-1234567890AB",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "7E1C3B2A-4D5E-6F7A-8B9C-0987654321CD",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Cinema.DAL.Entities.Seat", b =>
@@ -909,6 +923,24 @@ namespace Cinema.DAL.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("Users", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "5A6B7C8D-9E0F-1A2B-3C4D-5E6F7A8B9C0D",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "d24a9197-85b1-4974-9861-5da97c175404",
+                            Email = "admin@cinema.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@CINEMA.COM",
+                            NormalizedUserName = "ADMIN@CINEMA.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDUCdpaWb+kedrko4qwSs6TRP/dK+5fdApXYm2SxR1qLMqL+1Dpu7MCo1IEalglaAA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "57b4d656-701c-4f43-8b81-c4db3573fb94",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@cinema.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -996,6 +1028,13 @@ namespace Cinema.DAL.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("UserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "5A6B7C8D-9E0F-1A2B-3C4D-5E6F7A8B9C0D",
+                            RoleId = "8F2D4A1E-3C4B-4B6E-9F8A-1234567890AB"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

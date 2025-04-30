@@ -363,6 +363,20 @@ namespace Cinema.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Roles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "7E1C3B2A-4D5E-6F7A-8B9C-0987654321CD", null, "User", "USER" },
+                    { "8F2D4A1E-3C4B-4B6E-9F8A-1234567890AB", null, "Admin", "ADMIN" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "5A6B7C8D-9E0F-1A2B-3C4D-5E6F7A8B9C0D", 0, "d24a9197-85b1-4974-9861-5da97c175404", "admin@cinema.com", true, false, null, "ADMIN@CINEMA.COM", "ADMIN@CINEMA.COM", "AQAAAAIAAYagAAAAEDUCdpaWb+kedrko4qwSs6TRP/dK+5fdApXYm2SxR1qLMqL+1Dpu7MCo1IEalglaAA==", null, false, "57b4d656-701c-4f43-8b81-c4db3573fb94", false, "admin@cinema.com" });
+
+            migrationBuilder.InsertData(
                 table: "MovieGenre",
                 columns: new[] { "GenreId", "MovieId" },
                 values: new object[,]
@@ -460,6 +474,11 @@ namespace Cinema.DAL.Migrations
                     { 2, 2, 2, new DateTime(2025, 6, 16, 18, 0, 0, 0, DateTimeKind.Unspecified), 13.50m },
                     { 3, 1, 3, new DateTime(2025, 6, 17, 18, 0, 0, 0, DateTimeKind.Unspecified), 16.50m }
                 });
+
+            migrationBuilder.InsertData(
+                table: "UserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "8F2D4A1E-3C4B-4B6E-9F8A-1234567890AB", "5A6B7C8D-9E0F-1A2B-3C4D-5E6F7A8B9C0D" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_MovieGenre_GenreId",
