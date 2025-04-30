@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Cinema.BLL.DTOs.Movies.MovieDto>?
+
+@{
+    ViewData["Title"] = "Add Movie";
+}
+
+<div class="container admin-container py-5">
+    <div class="admin-form-wrapper mb-5">
+        <div class="card admin-card p-4">
+            <h2 class="mb-4 text-accent">@ViewData["Title"]</h2>
+            <form asp-action="Create" method="post" class="row g-3 align-items-end">
+                <div class="col-lg flex-grow-1">
+                    <label for="query" class="form-label text-light">Search TMDB</label>
+                    <input type="text"
+                           name="query"
+                           id="query"
+                           class="form-control admin-form-control"
+                           placeholder="Enter movie title"
+                           required />
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn admin-btn-primary">Search</button>
+                </div>
+                <div class="col-auto">
+                    <a asp-action="Upsert" class="btn admin-btn-secondary">
+                        Create from scratch
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @if (Model != null)
+    {
+        @if (!Model.Any())
+        {
+            <div class="alert alert-warning text-light">No results found</div>
+        }
+        else
+        {
+            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-4">
+                @foreach (var movie in Model)
+                {
+                    <div class="col">
+                        <div class="card admin-card h-100">
+                            @if (!string.IsNullOrWhiteSpace(movie.PosterUrl))
+                            {
+                                <img src="@movie.PosterUrl"
+                                     class="card-img-top"
+                                     alt="@movie.Name" />
+                            }
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">@movie.Name</h5>
+                                <a asp-action="Upsert"
+                                   asp-route-tmdbId="@movie.Id"
+                                   class="btn admin-btn-primary mt-auto">
+                                    Add
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    }
+</div>
