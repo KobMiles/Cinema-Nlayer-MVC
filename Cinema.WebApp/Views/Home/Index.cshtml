@@ -36,7 +36,7 @@
             </div>
         </div>
 
-        <a href="#" class="btn btn-danger btn-lg">Check Showtimes</a>
+        <a asp-controller="Session" asp-action="Index" class="btn btn-danger btn-lg">Check ShowTimes</a>
     </div>
 </div>
 
@@ -46,9 +46,9 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-4 g-4">
         @foreach (var movie in Model)
         {
-	        <div class="col">
-                <a asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id" class="text-decoration-none">
-                    <div class="card movie-card h-100">
+            <div class="col">
+                <div class="card movie-card h-100">
+                    <a asp-controller="Movie" asp-action="Details" asp-route-id="@movie.Id" class="text-decoration-none">
                         <div class="position-relative">
                             <img src="@movie.PosterUrl" class="card-img-top" alt="@movie.Name Poster"/>
                             <div class="rating position-absolute top-0 end-0 m-2">
@@ -61,10 +61,10 @@
                                 Release date: @movie.ReleaseDate?.ToShortDateString()
                             </p>
                         </div>
-                    </div>
-                </a>
-                <a href="#" class="btn btn-danger mt-auto">View Sessions</a>
-	        </div>
+                    </a>
+                    <a asp-controller="Session" asp-action="Index" class="btn btn-danger mt-auto">View Sessions</a>
+                </div>
+            </div>
         }
     </div>
 </div>
