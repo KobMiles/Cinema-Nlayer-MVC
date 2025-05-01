@@ -1,5 +1,6 @@
 ﻿using Cinema.BLL.DTOs.Halls;
 using Cinema.BLL.DTOs.Movies;
+using Cinema.BLL.DTOs.Seats;
 using Cinema.BLL.DTOs.Tickets;
 
 namespace Cinema.BLL.DTOs.Sessions;
@@ -18,4 +19,5 @@ public class SessionDetailsWithTicketsDto
     public decimal TicketPrice { get; set; }
 
     public IReadOnlyCollection<TicketDto> Tickets { get; set; } = [];
+    public IReadOnlyCollection<SeatDto> Seats { get; set; } = [];
 }
