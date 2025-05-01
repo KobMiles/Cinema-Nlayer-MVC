@@ -44,5 +44,6 @@ public class CinemaDbContext(DbContextOptions<CinemaDbContext> options)
         modelBuilder.SeedMovies();
         modelBuilder.SeedMovieGenres();
         modelBuilder.SeedSessions();
+        modelBuilder.SeedIdentity();
     }
 }
