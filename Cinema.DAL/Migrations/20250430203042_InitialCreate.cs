@@ -45,7 +45,7 @@ namespace Cinema.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(600)", maxLength: 600, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
                     RatingScore = table.Column<float>(type: "real", nullable: false),
                     Duration = table.Column<TimeSpan>(type: "time", nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -374,7 +374,7 @@ namespace Cinema.DAL.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "5A6B7C8D-9E0F-1A2B-3C4D-5E6F7A8B9C0D", 0, "d24a9197-85b1-4974-9861-5da97c175404", "admin@cinema.com", true, false, null, "ADMIN@CINEMA.COM", "ADMIN@CINEMA.COM", "AQAAAAIAAYagAAAAEDUCdpaWb+kedrko4qwSs6TRP/dK+5fdApXYm2SxR1qLMqL+1Dpu7MCo1IEalglaAA==", null, false, "57b4d656-701c-4f43-8b81-c4db3573fb94", false, "admin@cinema.com" });
+                values: new object[] { "5A6B7C8D-9E0F-1A2B-3C4D-5E6F7A8B9C0D", 0, "d39a9fa3-f70d-4b8f-8b57-577fb6047a9a", "admin@cinema.com", true, false, null, "ADMIN@CINEMA.COM", "ADMIN@CINEMA.COM", "AQAAAAIAAYagAAAAEFL5yfnLl74UTgIJMAYfw8EZ7kLcTqaklrlXIDx9qA3Ai8vJEHA4SF/vXMUz1liAdg==", null, false, "5ec7b57d-25b8-4ab9-b330-813ebde2a1de", false, "admin@cinema.com" });
 
             migrationBuilder.InsertData(
                 table: "MovieGenre",

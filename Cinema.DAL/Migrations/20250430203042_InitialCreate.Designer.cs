@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cinema.DAL.Migrations
 {
     [DbContext(typeof(CinemaDbContext))]
-    [Migration("20250430154759_InitialCreate")]
+    [Migration("20250430203042_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -92,8 +92,8 @@ namespace Cinema.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
-                        .HasMaxLength(600)
-                        .HasColumnType("nvarchar(600)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<TimeSpan>("Duration")
                         .HasColumnType("time");
@@ -932,15 +932,15 @@ namespace Cinema.DAL.Migrations
                         {
                             Id = "5A6B7C8D-9E0F-1A2B-3C4D-5E6F7A8B9C0D",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d24a9197-85b1-4974-9861-5da97c175404",
+                            ConcurrencyStamp = "d39a9fa3-f70d-4b8f-8b57-577fb6047a9a",
                             Email = "admin@cinema.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@CINEMA.COM",
                             NormalizedUserName = "ADMIN@CINEMA.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDUCdpaWb+kedrko4qwSs6TRP/dK+5fdApXYm2SxR1qLMqL+1Dpu7MCo1IEalglaAA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFL5yfnLl74UTgIJMAYfw8EZ7kLcTqaklrlXIDx9qA3Ai8vJEHA4SF/vXMUz1liAdg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "57b4d656-701c-4f43-8b81-c4db3573fb94",
+                            SecurityStamp = "5ec7b57d-25b8-4ab9-b330-813ebde2a1de",
                             TwoFactorEnabled = false,
                             UserName = "admin@cinema.com"
                         });
