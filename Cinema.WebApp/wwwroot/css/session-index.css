@@ -1,0 +1,145 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+:root {
+    --local-accent: var(--color-accent);
+    --local-accent-hover: var(--color-accent-hover);
+    --color-card-glow: rgba(220,53,69,.35);
+    --price-color: #ffb84d;
+    --meta-color: #9dbad5;
+    --meta-icon: #c9d6ff;
+}
+
+.session-accordion .session-date-btn {
+    background: var(--login-card-bg);
+    color: var(--local-accent);
+    border: 1px solid var(--login-card-border);
+    transition: background .3s, box-shadow .3s, color .3s;
+}
+
+    .session-accordion .session-date-btn:not(.collapsed) {
+        background: var(--local-accent);
+        color: var(--color-text-white);
+        box-shadow: 0 0 0 2px var(--local-accent-hover);
+    }
+
+    .session-accordion .session-date-btn::after {
+        filter: invert(1)
+    }
+
+.session-card {
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--login-card-border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform .35s, box-shadow .35s;
+    animation: fadeUp .6s ease both;
+}
+
+    .session-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 0 20px var(--color-card-glow);
+    }
+
+.poster-wrapper {
+    height: 260px;
+    overflow: hidden
+}
+
+.session-poster-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .5s
+}
+
+.session-card:hover .session-poster-img {
+    transform: scale(1.08)
+}
+
+.poster-wrapper .badge {
+    position: absolute;
+    font-weight: 600;
+    backdrop-filter: blur(3px);
+    background: rgba(0,0,0,.55);
+    color: var(--color-text-white);
+    border-radius: 50rem;
+    padding: .35rem .75rem;
+    font-size: .8rem;
+}
+
+.session-time {
+    top: 8px;
+    left: 8px
+}
+
+.session-hall {
+    bottom: 8px;
+    right: 8px
+}
+
+.session-rating {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-top: 55px solid var(--local-accent);
+    border-left: 55px solid transparent;
+    color: var(--color-text-white);
+    font-size: .9rem;
+    font-weight: 600;
+    line-height: 55px;
+    text-align: center;
+}
+
+    .session-rating i {
+        font-size: .8rem
+    }
+
+.movie-name {
+    font-family: "Bebas Neue",sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: .6px;
+    color: var(--local-accent);
+}
+
+.session-meta {
+    color: var(--meta-color)
+}
+
+    .session-meta i {
+        color: var(--meta-icon)
+    }
+
+.price {
+    color: var(--price-color);
+    font-weight: 700;
+}
+
+.details-btn {
+    background-color: var(--local-accent);
+    border-color: var(--local-accent);
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+    .details-btn:hover,
+    .details-btn:focus {
+        background-color: var(--local-accent-hover);
+        border-color: var(--local-accent-hover);
+        color: #fff;
+    }
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}

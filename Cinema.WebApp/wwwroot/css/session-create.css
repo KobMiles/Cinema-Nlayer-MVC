@@ -1,0 +1,83 @@
+﻿:root {
+    --local-accent: var(--color-accent);
+    --local-accent-hover: var(--color-accent-hover);
+    --card-glow: rgba(220,53,69,.35);
+    --input-bg: var(--input-bg-color);
+    --input-bg-focus: var(--input-focus-bg-color);
+}
+
+.session-create-page {
+    color: var(--color-text-white)
+}
+
+.create-card {
+    background: rgba(255,255,255,.07);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--login-card-border);
+    border-radius: 20px;
+    padding: 2.5rem 2rem 3rem;
+    width: 100%;
+    max-width: 720px;
+    box-shadow: 0 0 22px var(--card-glow);
+    overflow: visible;
+    z-index: 1;
+}
+
+.form-label {
+    color: var(--color-text-light);
+    font-size: .95rem
+}
+
+.form-control,
+.form-select {
+    background: var(--input-bg);
+    border: 1px solid var(--login-card-border);
+    color: var(--color-text-white);
+    border-radius: 8px;
+}
+
+    .form-control:focus,
+    .form-select:focus {
+        background: var(--input-bg-focus);
+        border-color: var(--local-accent);
+        box-shadow: 0 0 0 .2rem rgba(220,53,69,.25);
+        color: var(--color-text-white);
+    }
+
+    .form-select option {
+        background: #3b3b3b;
+        color: var(--color-text-white);
+    }
+
+        .form-select option:hover,
+        .form-select option:focus {
+            background: #4d4d4d
+        }
+
+        .form-select option:checked {
+            background: var(--local-accent);
+            color: #fff;
+        }
+
+.btn-outline-danger {
+    --bs-btn-color: var(--local-accent);
+    --bs-btn-border-color: var(--local-accent);
+    --bs-btn-hover-bg: var(--local-accent);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-border-color: var(--local-accent);
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.btn-danger {
+    background-color: var(--local-accent);
+    border-color: var(--local-accent);
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+    .btn-danger:hover {
+        background-color: var(--local-accent-hover);
+        border-color: var(--local-accent-hover)
+    }

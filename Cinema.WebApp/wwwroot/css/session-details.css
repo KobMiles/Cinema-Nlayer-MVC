@@ -1,0 +1,130 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+:root {
+    --local-accent: var(--color-accent);
+    --local-accent-hover: var(--color-accent-hover);
+    --color-card-glow: rgba(220,53,69,.35);
+    --price-color: #ffb84d;
+    --meta-color: #9dbad5;
+    --meta-icon: #c9d6ff;
+    --seat-size: 40px;
+    --seat-gap: 10px;
+    --card-max: 900px;
+}
+
+.session-details-page {
+    color: var(--color-text-white)
+}
+
+.details-card {
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--login-card-border);
+    border-radius: 20px;
+    padding: 2.5rem 2rem 3rem;
+    width: 100%;
+    max-width: var(--card-max);
+    box-shadow: 0 0 22px var(--color-card-glow);
+    text-align: center;
+}
+
+.details-poster {
+    width: 100%;
+    max-height: 460px;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+.movie-description {
+    max-width: 650px;
+    font-size: 1rem;
+    color: var(--color-text-muted);
+}
+
+.detail-badge {
+    background: var(--login-card-bg);
+    color: var(--color-text-white);
+    font-weight: 600;
+    border: 1px solid var(--login-card-border);
+    border-radius: 50rem;
+    padding: .5rem 1rem;
+    font-size: .85rem;
+}
+
+.seat-legend {
+    font-size: .9rem;
+    color: var(--color-text-muted);
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+    .seat-legend .seat {
+        transform: none;
+        margin-bottom: -4px
+    }
+
+.seat-map {
+    display: flex;
+    flex-direction: column;
+    gap: var(--seat-gap);
+    align-items: center;
+}
+
+.seat-row {
+    display: flex;
+    align-items: center;
+    gap: var(--seat-gap);
+}
+
+.seat-label {
+    width: 30px;
+    text-align: right;
+    margin-right: 6px;
+    color: var(--color-text-muted);
+    font-size: .85rem;
+}
+
+.seat {
+    width: var(--seat-size);
+    height: var(--seat-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .8rem;
+    font-weight: 600;
+    border-radius: 6px;
+    border: 1px solid var(--login-card-border);
+    cursor: default;
+    transition: transform .2s;
+}
+
+    .seat:hover {
+        transform: translateY(-3px) scale(1.05)
+    }
+
+.seat-free {
+    background: rgba(255,255,255,.05)
+}
+
+.seat-occupied {
+    background: var(--local-accent);
+    color: #fff
+}
+
+.details-actions .btn {
+    border-radius: 8px;
+    font-weight: 600
+}
+
+.btn-danger {
+    background-color: var(--local-accent);
+    border-color: var(--local-accent);
+    color: #fff;
+}
+
+    .btn-danger:hover,
+    .btn-danger:focus {
+        background-color: var(--local-accent-hover);
+        border-color: var(--local-accent-hover);
+    }
