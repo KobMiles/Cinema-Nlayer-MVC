@@ -20,10 +20,10 @@ public class AuthService(
         if (!result.Succeeded)
             return result;
 
-        //if (!await userManager.IsInRoleAsync(user, "User"))
-        //{
-        //    await userManager.AddToRoleAsync(user, "User");
-        //}
+        if (!await userManager.IsInRoleAsync(user, "User"))
+        {
+            await userManager.AddToRoleAsync(user, "User");
+        }
 
         return result;
     }
