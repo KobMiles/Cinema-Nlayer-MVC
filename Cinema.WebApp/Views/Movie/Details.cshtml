@@ -24,7 +24,7 @@
 
     <div class="row g-4 align-items-start">
         <div class="col-md-4">
-            <div class="poster-wrapper text-center">
+            <div class="poster-wrapper-movie-detail text-center">
                 <img src="@Model.PosterUrl"
                      alt="@Model.Name Poster"
                      class="img-fluid rounded shadow movie-poster" />
@@ -71,9 +71,7 @@
                 <div>
                     <h5>Trailer</h5>
                     <div class="ratio ratio-16x9 trailer-frame">
-                        <iframe src="@Model.TrailerUrl"
-                                allowfullscreen>
-                        </iframe>
+                        <iframe src="@Model.TrailerUrl" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -85,21 +83,21 @@
 
         @if (Model.Sessions.Any())
         {
-            var sessionsByDate = Model.Sessions
-	            .OrderBy(s => s.StartTime.Date)
-	            .ThenBy(s => s.StartTime.TimeOfDay)
-	            .GroupBy(s => s.StartTime.Date);
+            var grouped = Model.Sessions
+            .OrderBy(s => s.StartTime.Date)
+            .ThenBy(s => s.StartTime.TimeOfDay)
+            .GroupBy(s => s.StartTime.Date);
 
-            foreach (var dateGroup in sessionsByDate)
+            foreach (var day in grouped)
             {
                 <div class="date-group mb-4">
                     <h4 class="date-header mb-3 text-accent">
                         <i class="far fa-calendar-alt me-2"></i>
-                        @dateGroup.Key.ToString("dddd, MMMM d")
+                        @day.Key.ToString("dddd, MMMM d")
                     </h4>
 
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-                        @foreach (var session in dateGroup)
+                        @foreach (var session in day)
                         {
                             <div class="col">
                                 <div class="card session-card h-100">
@@ -117,11 +115,11 @@
                                         <div class="session-details mb-3">
                                             <div class="detail-item mb-2">
                                                 <i class="fas fa-theater-masks me-2"></i>
-                                                <span>Hall @session.HallId</span>
+                                                Hall @session.HallId
                                             </div>
                                             <div class="detail-item">
                                                 <i class="fas fa-stopwatch me-2"></i>
-                                                <span>Ends at @session.StartTime.AddMinutes(Model.Duration.TotalMinutes).ToString("HH:mm")</span>
+                                                Ends at @session.StartTime.AddMinutes(Model.Duration.TotalMinutes).ToString("HH:mm")
                                             </div>
                                         </div>
 
