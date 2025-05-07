@@ -1,25 +1,67 @@
-﻿<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+﻿<header class="main-header shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark glass-nav fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Cinema.WebApp</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+
+            <a asp-controller="Home" asp-action="Index" class="navbar-brand fw-bold d-flex align-items-center">
+                <i class="bi bi-film me-1"></i>Cinema
+            </a>
+
+            <button class="navbar-toggler border-0" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navMain"
+                    aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
+
+            <div class="collapse navbar-collapse" id="navMain">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-2 align-items-lg-center">
+
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a asp-controller="Home" asp-action="Index"
+                           class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString()=="Home" ? "active" : "")">
+                            Home
+                        </a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <a asp-controller="Session" asp-action="Index"
+                           class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString()=="Session" ? "active" : "")">
+                            Sessions
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="@Url.Action("Login", "Account")">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="@Url.Action("Register", "Account")">Register</a>
-                    </li>
+
+                    @if (User.Identity?.IsAuthenticated ?? false)
+                    {
+                        <li class="nav-item">
+                            <a asp-controller="Account" asp-action="Profile"
+                               class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString()=="Profile" ? "active" : "")">
+                                Profile
+                            </a>
+                        </li>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a asp-controller="Admin" asp-action="Create" class="nav-link d-flex align-items-center">
+                                    <i class="bi bi-plus-circle me-1"></i>New Movie
+                                </a>
+                            </li>
+                        }
+
+                        <li class="nav-item">
+                            <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                <button type="submit" class="nav-link btn btn-link p-0 border-0">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a asp-controller="Account" asp-action="Login" class="nav-link">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Account" asp-action="Register" class="nav-link">Register</a>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>

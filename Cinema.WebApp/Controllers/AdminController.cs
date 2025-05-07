@@ -1,13 +1,18 @@
 ﻿using Cinema.BLL.DTOs.Movies;
 using Cinema.BLL.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cinema.WebApp.Controllers;
+
+[Authorize(Roles = "Admin")]
 public class AdminController(ITmDbService tmDbService, IMovieService movieService) : Controller
 {
     [HttpGet]
     public IActionResult Create()
-        => View(model: (IEnumerable<MovieDto>?)null);
+    {
+       return View();
+    }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -15,11 +20,13 @@ public class AdminController(ITmDbService tmDbService, IMovieService movieServic
     {
         if (string.IsNullOrWhiteSpace(query))
         {
-            ModelState.AddModelError(nameof(query), "Введіть пошуковий запит");
-            return View(model: (IEnumerable<MovieDto>?)null);
+            ModelState.AddModelError(nameof(query), "Enter query for search");
+
+            return View();
         }
 
         var results = await tmDbService.SearchMoviesAsync(query);
+
         return View(results);
     }
 
@@ -39,6 +46,7 @@ public class AdminController(ITmDbService tmDbService, IMovieService movieServic
         {
             model = new MovieCreateDto();
         }
+
         return View(model);
     }
 
@@ -50,6 +58,7 @@ public class AdminController(ITmDbService tmDbService, IMovieService movieServic
             return View(dto);
 
         await movieService.CreateAsync(dto);
+
         return RedirectToAction(nameof(Create));
     }
 }

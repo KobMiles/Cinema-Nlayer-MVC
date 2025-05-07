@@ -18,7 +18,7 @@ public class MovieConfiguration : IEntityTypeConfiguration<Movie>
 
         builder
             .Property(m => m.Description)
-            .HasMaxLength(600)
+            .HasMaxLength(1000)
             .IsRequired(false);
 
         builder

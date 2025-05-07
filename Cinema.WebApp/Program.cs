@@ -17,6 +17,8 @@ builder.Services.AddUnitOfWork();
 
 builder.Services.AddBusinessLogicServices();
 
+builder.Services.AddFluentValidators();
+
 builder.Services.AddTmDbClient(builder.Configuration);
 
 var app = builder.Build();

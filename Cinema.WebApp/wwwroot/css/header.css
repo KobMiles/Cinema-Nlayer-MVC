@@ -1,0 +1,52 @@
+﻿:root {
+    --header-height: 64px;
+}
+
+.glass-nav {
+    background: rgba(0,0,0,.25);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--login-card-border);
+}
+
+.navbar-brand {
+    color: var(--color-accent);
+    font-size: 1.3rem;
+    letter-spacing: .5px;
+}
+
+    .navbar-brand:hover {
+        color: var(--color-accent-hover)
+    }
+
+.nav-link {
+    color: var(--color-text-light);
+    transition: color .2s;
+    font-weight: 500;
+}
+
+    .nav-link:hover,
+    .nav-link:focus {
+        color: var(--color-text-white)
+    }
+
+    .nav-link.active {
+        color: var(--color-accent)
+    }
+
+.navbar-toggler {
+    box-shadow: none
+}
+
+.navbar-toggler-icon {
+    filter: invert(1)
+}
+
+.main-header-spacer {
+    height: var(--header-height);
+}
+
+@media (min-width:992px) {
+    .main-header-spacer {
+        height: calc(var(--header-height) + 8px)
+    }
+}

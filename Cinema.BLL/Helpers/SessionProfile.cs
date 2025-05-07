@@ -13,6 +13,7 @@ public class SessionProfile : Profile
         CreateMap<Session, SessionDetailsWithTicketsDto>();
 
         CreateMap<SessionCreateDto, Session>();
-        CreateMap<SessionUpdateDto, Session>();
+        CreateMap<SessionUpdateDto, Session>()
+            .ReverseMap();
     }
 }

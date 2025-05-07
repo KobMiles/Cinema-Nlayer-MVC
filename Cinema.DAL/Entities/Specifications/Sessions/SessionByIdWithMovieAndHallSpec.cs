@@ -2,12 +2,17 @@
 
 namespace Cinema.DAL.Entities.Specifications.Sessions;
 
-public class SessionByIdWithMovieAndHallSpec : Specification<Session>
+public sealed class SessionByIdWithMovieAndHallSpec : Specification<Session>
 {
-    public SessionByIdWithMovieAndHallSpec(int sessionId)
+    public SessionByIdWithMovieAndHallSpec(int sessionId, bool includeTickets = false)
     {
-        Query.Where(s => s.Id == sessionId)
+        Query
+            .Where(s => s.Id == sessionId)
             .Include(s => s.Movie)
             .Include(s => s.Hall);
+
+
+        if (includeTickets)
+            Query.Include(s => s.Tickets);
     }
 }

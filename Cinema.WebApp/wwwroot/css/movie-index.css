@@ -2,6 +2,13 @@
     color: var(--color-text-light);
 }
 
+.movie-poster {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
 .hero-banner {
     background: linear-gradient(135deg, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
     padding: 4rem 2rem;
@@ -29,18 +36,18 @@
         background-color: var(--color-accent-hover);
     }
 
-.poster-wrapper .movie-poster {
+.poster-wrapper-movie-detail .movie-poster {
     max-height: 600px;
-    object-fit: cover;
+    object-fit: contain;
     border: 2px solid var(--color-accent);
     background-color: transparent;
 }
 
-.details-wrapper h2 {
+.details-wrapper-movie-detail h2 {
     color: var(--color-accent);
 }
 
-.details-wrapper .genre-badge {
+.details-wrapper-movie-detail .genre-badge {
     background-color: var(--color-accent);
     color: #fff;
     font-weight: 500;

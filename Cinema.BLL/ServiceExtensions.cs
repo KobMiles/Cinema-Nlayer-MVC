@@ -22,6 +22,7 @@ public static class ServiceExtensions
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<ITmDbService, TmDbService>();
+        services.AddScoped<ISessionService, SessionService>();
 
         return services;
     }

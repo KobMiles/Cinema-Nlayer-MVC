@@ -23,7 +23,7 @@ public class AccountController(IAuthService authService, IUserService userServic
         if (result.Succeeded)
         {
             TempData["Success"] = "Registration successful! You can now log in.";
-            return RedirectToAction(nameof(Login));
+            return RedirectToAction("Login");
         }
 
         foreach (var error in result.Errors)
@@ -55,10 +55,8 @@ public class AccountController(IAuthService authService, IUserService userServic
             {
                 return Redirect(returnUrl);
             }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         ModelState.AddModelError(string.Empty, "Invalid login attempt.");
@@ -69,7 +67,7 @@ public class AccountController(IAuthService authService, IUserService userServic
     public async Task<IActionResult> Logout()
     {
         await authService.LogoutAsync();
-        return RedirectToAction(nameof(Login));
+        return RedirectToAction("Login");
     }
 
     [HttpGet, Authorize]
