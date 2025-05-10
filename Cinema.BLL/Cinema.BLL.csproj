@@ -17,4 +17,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="External\TmDb\Interfaces\" />
+  </ItemGroup>
+
 </Project>

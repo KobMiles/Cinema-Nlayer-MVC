@@ -18,7 +18,7 @@ public class MovieConfiguration : IEntityTypeConfiguration<Movie>
 
         builder
             .Property(m => m.Description)
-            .HasMaxLength(255)
+            .HasMaxLength(1000)
             .IsRequired(false);
 
         builder
@@ -52,6 +52,6 @@ public class MovieConfiguration : IEntityTypeConfiguration<Movie>
 
         builder
             .ToTable(t => t
-            .HasCheckConstraint("CK_Movie_Rating", "RatingScore BETWEEN 0.0 AND 5.0"));
+            .HasCheckConstraint("CK_Movie_Rating", "RatingScore BETWEEN 0.0 AND 10.0"));
     }
 }

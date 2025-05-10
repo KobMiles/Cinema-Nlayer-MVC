@@ -45,7 +45,7 @@ namespace Cinema.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
                     RatingScore = table.Column<float>(type: "real", nullable: false),
                     Duration = table.Column<TimeSpan>(type: "time", nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -55,7 +55,7 @@ namespace Cinema.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Movies", x => x.Id);
-                    table.CheckConstraint("CK_Movie_Rating", "RatingScore BETWEEN 0.0 AND 5.0");
+                    table.CheckConstraint("CK_Movie_Rating", "RatingScore BETWEEN 0.0 AND 10.0");
                 });
 
             migrationBuilder.CreateTable(
@@ -298,11 +298,11 @@ namespace Cinema.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TicketNumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    TicketNumber = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     SessionId = table.Column<int>(type: "int", nullable: false),
                     PaymentId = table.Column<int>(type: "int", nullable: false),
                     SeatId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -361,6 +361,20 @@ namespace Cinema.DAL.Migrations
                     { 2, "A comedy that will make you laugh non-stop.", new TimeSpan(0, 1, 30, 0, 0), "Laugh Out Loud", "https://example.com/laugh-out-loud-poster.jpg", 4f, new DateTime(2022, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "https://example.com/laugh-out-loud-trailer.mp4" },
                     { 3, "A dramatic journey of love and loss.", new TimeSpan(0, 1, 50, 0, 0), "Deep Emotions", "https://example.com/deep-emotions-poster.jpg", 4.2f, new DateTime(2021, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "https://example.com/deep-emotions-trailer.mp4" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Roles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "7E1C3B2A-4D5E-6F7A-8B9C-0987654321CD", null, "User", "USER" },
+                    { "8F2D4A1E-3C4B-4B6E-9F8A-1234567890AB", null, "Admin", "ADMIN" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "5A6B7C8D-9E0F-1A2B-3C4D-5E6F7A8B9C0D", 0, "d39a9fa3-f70d-4b8f-8b57-577fb6047a9a", "admin@cinema.com", true, false, null, "ADMIN@CINEMA.COM", "ADMIN@CINEMA.COM", "AQAAAAIAAYagAAAAEFL5yfnLl74UTgIJMAYfw8EZ7kLcTqaklrlXIDx9qA3Ai8vJEHA4SF/vXMUz1liAdg==", null, false, "5ec7b57d-25b8-4ab9-b330-813ebde2a1de", false, "admin@cinema.com" });
 
             migrationBuilder.InsertData(
                 table: "MovieGenre",
@@ -460,6 +474,11 @@ namespace Cinema.DAL.Migrations
                     { 2, 2, 2, new DateTime(2025, 6, 16, 18, 0, 0, 0, DateTimeKind.Unspecified), 13.50m },
                     { 3, 1, 3, new DateTime(2025, 6, 17, 18, 0, 0, 0, DateTimeKind.Unspecified), 16.50m }
                 });
+
+            migrationBuilder.InsertData(
+                table: "UserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "8F2D4A1E-3C4B-4B6E-9F8A-1234567890AB", "5A6B7C8D-9E0F-1A2B-3C4D-5E6F7A8B9C0D" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_MovieGenre_GenreId",

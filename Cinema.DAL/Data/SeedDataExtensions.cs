@@ -1,4 +1,5 @@
 ﻿using Cinema.DAL.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cinema.DAL.Data;
@@ -138,5 +139,56 @@ public static class ModelBuilderExtensions
                 TicketPrice = 16.50m
             }
         );
+    }
+    public static void SeedIdentity(this ModelBuilder modelBuilder)
+    {
+        const string adminRoleId = "8F2D4A1E-3C4B-4B6E-9F8A-1234567890AB";
+        const string userRoleId = "7E1C3B2A-4D5E-6F7A-8B9C-0987654321CD";
+        const string adminUserId = "5A6B7C8D-9E0F-1A2B-3C4D-5E6F7A8B9C0D";
+
+        modelBuilder.Entity<Role>(b =>
+        {
+            b.HasData(
+                new Role
+                {
+                    Id = adminRoleId,
+                    Name = "Admin",
+                    NormalizedName = "ADMIN"
+                },
+                new Role
+                {
+                    Id = userRoleId,
+                    Name = "User",
+                    NormalizedName = "USER"
+                }
+            );
+        });
+
+        var hasher = new PasswordHasher<User>();
+        var admin = new User
+        {
+            Id = adminUserId,
+            UserName = "admin@cinema.com",
+            NormalizedUserName = "ADMIN@CINEMA.COM",
+            Email = "admin@cinema.com",
+            NormalizedEmail = "ADMIN@CINEMA.COM",
+            EmailConfirmed = true,
+            SecurityStamp = Guid.NewGuid().ToString("D")
+        };
+        admin.PasswordHash = hasher.HashPassword(admin, "Admin123!");
+
+        modelBuilder.Entity<User>(b =>
+        {
+            b.HasData(admin);
+        });
+
+        modelBuilder.Entity<IdentityUserRole<string>>(b =>
+        {
+            b.HasData(new IdentityUserRole<string>
+            {
+                RoleId = adminRoleId,
+                UserId = adminUserId
+            });
+        });
     }
 }

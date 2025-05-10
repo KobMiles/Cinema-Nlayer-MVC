@@ -1,4 +1,4 @@
-using Cinema.BLL;
+﻿using Cinema.BLL;
 using Cinema.DAL;
 using Cinema.WebApp.Extensions;
 
@@ -16,6 +16,10 @@ builder.Services.AddCustomIdentityServices();
 builder.Services.AddUnitOfWork();
 
 builder.Services.AddBusinessLogicServices();
+
+builder.Services.AddFluentValidators();
+
+builder.Services.AddTmDbClient(builder.Configuration);
 
 var app = builder.Build();
 

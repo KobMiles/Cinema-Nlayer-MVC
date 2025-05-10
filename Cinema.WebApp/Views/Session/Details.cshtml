@@ -1,0 +1,60 @@
+﻿@model Cinema.BLL.DTOs.Sessions.SessionDetailsWithTicketsDto
+
+@{
+    ViewData["Title"] = "Session Details";
+    string DurationFmt(TimeSpan span) => $"{(int)span.TotalHours}h {span.Minutes}m";
+}
+
+<div class="container my-5 session-details-page d-flex justify-content-center">
+    <div class="details-card">
+
+        <img src="@Model.Movie.PosterUrl"
+             alt="@Model.Movie.Name poster"
+             class="details-poster mb-4" />
+
+        <h2 class="display-6 text-danger text-center mb-3">@Model.Movie.Name</h2>
+
+        <p class="movie-description mx-auto mb-4">
+            @Model.Movie.Description
+        </p>
+
+        <div class="details-info mb-4">
+            <div class="d-flex flex-wrap gap-3 justify-content-center">
+                <span class="badge detail-badge"><i class="bi bi-calendar-event me-1"></i>@Model.StartTime.ToString("dd MMM yyyy")</span>
+                <span class="badge detail-badge"><i class="bi bi-clock me-1"></i>@Model.StartTime.ToString("HH:mm")</span>
+                <span class="badge detail-badge"><i class="bi bi-hourglass-split me-1"></i>@DurationFmt(Model.Movie.Duration)</span>
+                <span class="badge detail-badge"><i class="bi bi-star-fill me-1"></i>@Model.Movie.RatingScore.ToString("0.0")/10</span>
+                <span class="badge detail-badge"><i class="bi bi-building me-1"></i>Hall @Model.Hall.Id</span>
+                <span class="badge detail-badge"><i class="bi bi-ticket-perforated me-1"></i>@Model.TicketPrice.ToString("C")</span>
+            </div>
+        </div>
+
+        <div class="seat-legend mb-2 text-center">
+            <span class="seat seat-free me-2"></span> Free
+            <span class="seat seat-occupied ms-4 me-2"></span> Occupied
+        </div>
+
+        <div class="seat-map mb-4">
+            @for (int row = 1; row <= Model.Seats.Max(s => s.SeatRow); row++)
+            {
+                <div class="seat-row">
+                    <span class="seat-label">@row</span>
+                    @foreach (var seat in Model.Seats.Where(s => s.SeatRow == row).OrderBy(s => s.SeatNumber))
+                    {
+                        var occ = Model.Tickets.Any(t => t.SeatId == seat.Id);
+                        <div class="seat @(occ ? "seat-occupied" : "seat-free")">@seat.SeatNumber</div>
+                    }
+                </div>
+            }
+        </div>
+
+        <div class="details-actions d-flex flex-wrap gap-2">
+            <a asp-action="Index" asp-controller="Session" class="btn btn-danger flex-grow-1">Back</a>
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-warning flex-grow-1">Edit</a>
+            }
+        </div>
+
+    </div>
+</div>

@@ -13,6 +13,13 @@
     --input-focus-bg-color: rgba(255,255,255,0.25);
     --input-text-color: var(--color-text-muted);
     --login-header-color: var(--color-accent);
+    --btn-bg: var(--color-accent);
+    --btn-hover-bg: var(--color-accent-hover);
+    --color-accent-secondary: #0dcaf0;
+    --color-accent-secondary-hover: #0099c8;
+    --color-card-glass: rgba(255, 255, 255, 0.08);
+    --color-card-glow: rgba(13, 202, 240, 0.4);
+    --color-card-glow: rgba(220, 53, 69, 0.35);
 }
 
 body {

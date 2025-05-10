@@ -33,23 +33,28 @@
 .movie-card {
     background-color: var(--color-card-bg);
     border: none;
-    color: var(--color-text);
-    transition: transform 0.3s;
+    color: var(--color-text-white);
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 0 1px var(--login-card-border);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
     .movie-card:hover {
         transform: scale(1.03);
+        box-shadow: 0 0 0 2px var(--color-accent), 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     .movie-card .card-title {
-        color: var(--color-text);
+        color: var(--color-text-white);
     }
 
     .movie-card .card-text {
-        color: var(--color-text);
+        color: var(--color-text-muted);
     }
 
     .movie-card .rating .badge {
         background-color: var(--color-accent);
         font-size: 0.85rem;
+        color: var(--color-text-white);
     }

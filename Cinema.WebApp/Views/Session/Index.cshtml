@@ -1,0 +1,152 @@
+﻿@model IEnumerable<Cinema.BLL.DTOs.Sessions.SessionDetailsWithoutTicketsDto>
+
+@{
+    ViewData["Title"] = "Sessions by Date";
+
+    var groups = Model
+        .OrderBy(s => s.StartTime)
+        .GroupBy(s => s.StartTime.Date)
+        .OrderBy(g => g.Key);
+
+    var accId = "sessionsAccordion";
+    var idx = 0;
+
+    string DurationFmt(TimeSpan span) => $"{(int)span.TotalHours}h {span.Minutes}m";
+}
+
+<div class="container my-5 session-index">
+    <div class="d-flex flex-wrap gap-3 justify-content-between align-items-center mb-4">
+        <h1 class="display-5 m-0 text-danger">@ViewData["Title"]</h1>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-action="Create" class="btn btn-danger d-flex align-items-center gap-2">
+                <i class="bi bi-plus-lg"></i> New Session
+            </a>
+        }
+    </div>
+
+    <div class="accordion session-accordion" id="@accId">
+        @foreach (var g in groups)
+        {
+            var collapseId = $"collapse{idx}";
+            var headingId = $"heading{idx}";
+            idx++;
+
+            <div class="accordion-item bg-transparent border-0 mb-3">
+                <h2 class="accordion-header" id="@headingId">
+                    <button type="button"
+                            class="accordion-button collapsed fw-semibold session-date-btn"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#@collapseId"
+                            aria-expanded="false"
+                            aria-controls="@collapseId">
+                        @g.Key.ToString("dddd, MMMM dd, yyyy")
+                    </button>
+                </h2>
+
+                <div id="@collapseId"
+                     class="accordion-collapse collapse"
+                     aria-labelledby="@headingId"
+                     data-bs-parent="#@accId">
+
+                    <div class="accordion-body pt-4">
+                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                            @foreach (var s in g.OrderBy(x => x.StartTime))
+                            {
+                                <div class="col">
+                                    <div class="card session-card h-100">
+
+                                        <div class="poster-wrapper position-relative">
+                                            <img src="@s.Movie.PosterUrl"
+                                                 alt="@s.Movie.Name poster"
+                                                 class="session-poster-img" />
+
+                                            <span class="badge session-time">
+                                                <i class="bi bi-clock me-1"></i>@s.StartTime.ToString("HH:mm")
+                                            </span>
+
+                                            <span class="badge session-hall">Hall @s.Hall.Id</span>
+
+                                            <div class="session-rating">
+                                                <i class="bi bi-star-fill me-1"></i>@s.Movie.RatingScore.ToString("0.0")
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body d-flex flex-column p-3">
+
+                                            <h5 class="card-title movie-name text-truncate mb-2">
+                                                @s.Movie.Name
+                                            </h5>
+
+                                            <div class="session-meta d-flex flex-wrap gap-3 small mb-2">
+                                                <span class="d-flex align-items-center gap-1">
+                                                    <i class="bi bi-calendar-event"></i>@s.StartTime.ToString("dd MMM")
+                                                </span>
+                                                <span class="d-flex align-items-center gap-1">
+                                                    <i class="bi bi-clock"></i>@s.StartTime.ToString("HH:mm")
+                                                </span>
+                                                <span class="d-flex align-items-center gap-1">
+                                                    <i class="bi bi-hourglass-split"></i>@DurationFmt(s.Movie.Duration)
+                                                </span>
+                                            </div>
+
+                                            <div class="price mb-3">
+                                                <i class="bi bi-currency-dollar me-1"></i>@s.TicketPrice.ToString("C")
+                                            </div>
+
+                                            <div class="mt-auto d-flex flex-wrap gap-2">
+                                                <a asp-action="Details"
+                                                   asp-route-id="@s.Id"
+                                                   class="btn btn-danger details-btn flex-grow-1">
+                                                    Details
+                                                </a>
+
+                                                @if (User.IsInRole("Admin"))
+                                                {
+                                                    <a asp-action="Edit"
+                                                       asp-route-id="@s.Id"
+                                                       class="btn btn-outline-warning flex-grow-1">
+                                                        Edit
+                                                    </a>
+
+                                                    <form asp-action="Delete"
+                                                          asp-route-id="@s.Id"
+                                                          method="post"
+                                                          class="w-100"
+                                                          onsubmit="return confirm('Delete this session?');">
+                                                        <button type="submit"
+                                                                class="btn btn-outline-danger w-100">
+                                                            Delete
+                                                        </button>
+                                                    </form>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('.session-date-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const y = window.scrollY;
+                const el = document.querySelector(btn.dataset.bsTarget);
+                const handler = e => {
+                    window.scrollTo({ top: y });
+                    el.removeEventListener('shown.bs.collapse', handler);
+                };
+                el.addEventListener('shown.bs.collapse', handler);
+            });
+        });
+    </script>
+}

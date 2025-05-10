@@ -4,3 +4,9 @@
 @import "profile-index.css";
 @import "_success-message-partial.css";
 @import "_validation-summary.css";
+@import "movie-index.css";
+@import "admin-movies.css";
+@import "session-index.css";
+@import "session-details.css";
+@import "session-create.css";
+@import "session-edit.css";
